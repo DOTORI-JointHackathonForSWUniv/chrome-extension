@@ -8,5 +8,5 @@
     "default_title": "Open the popup"
   },
   "permissions": [],
-  "content_security_policy": "script-src 'self' 'sha256-jdvKQLWYB8owZOf/BwPi+AEeQU1bP6ThmZoQdtid12w'; object-src 'self'"
+  "content_security_policy": "script-src 'self' 'sha256-eGQ/xaBz1+cKc18MM8k1rrbZJeGOxxmWxAr9W1vUMVs='; object-src 'self'"
 }
