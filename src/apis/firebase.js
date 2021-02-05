@@ -76,7 +76,9 @@ const getAddedFiles = async () => {
     .get();
 
   querySnapshot.forEach((doc) => {
-    files.push(doc.data());
+    // let data = doc.data();
+    // data.id = doc.id;
+    files.push(doc.id);
   });
 
   return files;
@@ -134,7 +136,9 @@ const getUnpushedCommits = async () => {
     .get();
 
   querySnapshot.forEach((doc) => {
-    pushes.push(doc.data());
+    // let data = doc.data();
+    // data.id = doc.id;
+    pushes.push(doc.id);
   });
 
   return pushes;
@@ -173,4 +177,53 @@ const modifyCommitStatusToPushed = async () => {
     const ref = doc.ref;
     await ref.update({ is_pushed: true });
   });
+};
+
+// commit id가 없으면 에러가 납니다.
+// commitId를 준 commit 이후에 한 커밋과 관련된 File, Commit, Push를 모두 없앱니다.
+export const gitReset = async (commitId) => {
+  const commitRef = await db.collection("Commit").doc(commitId).get();
+  const commit = await commitRef.data();
+
+  console.log("@@@ removing files & commits created after ", commit.created_at);
+  commit.files.map(async (file) => {
+    const fileId = file.id;
+    await removeFileById(fileId);
+  });
+
+  const created_at = commit.created_at;
+  const commitSnapshot = await db
+    .collection("Commit")
+    .where("created_at", ">", created_at)
+    .get();
+
+  commitSnapshot.forEach(async (doc) => {
+    const ref = doc.ref;
+    await ref.delete();
+  });
+  console.log("@@@ done.");
+};
+
+const removeFileById = async (fileId) => {
+  try {
+    await db.collection("File").doc(fileId).delete();
+  } catch (e) {
+    console.log("@@@ remove file by id err: ", e);
+  }
+};
+
+export const getFileById = async (id) => {
+  const file = db.collection("File").doc(id);
+  return file;
+};
+
+export const getCommitById = async (id) => {
+  const commit = db.collection("Commit").doc(id);
+
+  return commit;
+};
+
+export const getPushById = async (id) => {
+  const push = db.collection("Push").doc(id);
+  return push;
 };

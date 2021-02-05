@@ -28,11 +28,22 @@ function FirebaseTest() {
     await db.gitPush();
   };
 
+  const gitReset = async () => {
+    await db.gitReset("hTVFZGvz2Vt50fDEZaPy");
+  };
+
+  const getFile = async () => {
+    const file = await db.getFileById("2Ntm5fu1gvL88ntCE9nB");
+    console.log("@@@@ found file ", file);
+  };
+
   return curData.length > 0 ? (
     <div>
       <button onClick={gitAdd}>Git Add Test</button>
       <button onClick={gitCommit}>Git Commit Test</button>
       <button onClick={gitPush}>Git Push Test</button>
+      <button onClick={gitReset}>Git Reset Test</button>
+      <button onClick={getFile}>Get File Test</button>
       {curData.map((data, index) => {
         return (
           <div key={index}>
