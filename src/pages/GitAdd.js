@@ -107,10 +107,13 @@ const GitAdd = ({ history }) => {
                 <BasketImg src={basket}></BasketImg>
             </ImgBox>
             <AddButton
-                // onClick={() => {
-                //     movePage("GitCommit");
-                // }}
-                onClick={toggleClicked}
+                onClick={() => {
+                    toggleClicked();
+                    setTimeout(() => 
+                        movePage("GitCommit"), 5000); //5초 딜레이
+                    
+                }}
+                // onClick={toggleClicked}
             >
                 주머니에 내가 만든 도토리 넣기
             </AddButton>
