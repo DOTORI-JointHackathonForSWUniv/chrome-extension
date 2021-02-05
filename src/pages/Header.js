@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
 import log from "../assets/log.png";
-import log_dotori from "../assets/log_dotori.png";
+import back from "../assets/back.png";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -32,6 +32,7 @@ const LogBox = styled.div`
     position: fixed;
     top: 60px;
     right: 25px;
+    z-index: 2;
 `;
 const Log = styled.div`
     padding: 1rem 1rem;
@@ -40,14 +41,19 @@ const Log = styled.div`
     align-items: center;
     border-bottom: solid 0.5px #e5e5e5;
 `;
-const LogIcon = styled.img`
-    width: 32px;
-    height: 32px;
+const LogNum = styled.div`
+    color: #755e4c;
+    font-weight: bold;
+    font-size: 13px;
 `;
 const LogText = styled.div`
     font-size: 11px;
     color: #332820;
-    padding-left: 5px;
+    padding: 0 15px;
+`;
+const LogReset = styled.img`
+    width: 23px;
+    height: 22px;
 `;
 
 const Header = () => {
@@ -61,8 +67,9 @@ const Header = () => {
             {openLog ? (
                 <LogBox>
                     <Log>
-                        <LogIcon src={log_dotori}></LogIcon>
+                        <LogNum>1</LogNum>
                         <LogText>겨울에 먹을 비상 도토리</LogText>
+                        <LogReset src={back}></LogReset>
                     </Log>
                 </LogBox>
             ) : null}

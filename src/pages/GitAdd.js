@@ -72,6 +72,7 @@ const BasketImg = styled.img`
 `;
 
 const AddButton = styled.button`
+    border: none;
     width: 460px;
     height: 70px;
     border-radius: 5px;

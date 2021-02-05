@@ -80,12 +80,6 @@ const CommitImg = styled.img`
     width: 113px;
     height: 113px;
 `;
-const ResetImg = styled.img`
-    width: 43px;
-    height: 41px;
-    position: absolute;
-    margin-left: 140px;
-`;
 const HomeImg = styled.img`
     width: 225px;
     height: 225px;
@@ -125,7 +119,6 @@ const GitPush = ({ setPage }) => {
             </StepBox>
             <PushBox>
                 <CommitBox clicked={clicked} onClick={toggleClicked}>
-                    <ResetImg src={reset}></ResetImg>
                     <CommitImg src={commit}></CommitImg>
                     <CommitName>겨울에 먹을 비상 도토리</CommitName>
                 </CommitBox>

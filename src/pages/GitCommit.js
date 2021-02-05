@@ -63,12 +63,6 @@ const CommitName = styled.div`
     font-weight: 800;
     color: #332820;
 `;
-const ResetImg = styled.img`
-    width: 43px;
-    height: 41px;
-    position: absolute;
-    margin-left: 110px;
-`;
 const AddButton = styled.button`
     border: none;
     width: 460px;
@@ -103,7 +97,6 @@ const GitCommit = ({ setPage }) => {
             <CommitBox>
                 {complete ? null : <CommitText>주머니 이름 정해줘~ 먹을 때 찾기 편하게 :)</CommitText>}
                 <CommitImg src={commit}></CommitImg>
-                {complete ? <ResetImg src={reset}></ResetImg> : null}
                 {complete ? (
                     <CommitName>{inputName}</CommitName>
                 ) : (
