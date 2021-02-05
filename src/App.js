@@ -8,14 +8,17 @@ import Header from "./components/Header";
 import StepBox from "./components/StepBox";
 
 class App extends React.Component {
-  // const history = createMemoryHistory()
   state = {
     page: "add",
-    // render: <GitAdd setPage={this.setPage}></GitAdd>,
+    commitName: "",
   };
 
   setPage = (p) => {
-    this.setState({ page: p });
+    this.setState({ ...this.state, page: p });
+  };
+
+  setName = (name) => {
+    this.setState({ ...this.state, commitName: name });
   };
 
   render() {
@@ -25,10 +28,12 @@ class App extends React.Component {
         page = <GitAdd setPage={this.setPage}></GitAdd>;
         break;
       case "commit":
-        page = <GitCommit setPage={this.setPage}></GitCommit>;
+        page = (
+          <GitCommit setPage={this.setPage} setName={this.setName}></GitCommit>
+        );
         break;
       case "push":
-        page = <GitPush setPage={this.setPage}></GitPush>;
+        page = <GitPush name={this.state.commitName}></GitPush>;
         break;
     }
 

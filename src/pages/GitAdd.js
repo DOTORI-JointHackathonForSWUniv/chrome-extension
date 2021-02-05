@@ -61,41 +61,41 @@ const GitAdd = ({ setPage }) => {
   // const [clicked2, setClicked2] = useState(false);
   // const toggleClicked2 = () => setClicked2(value => !value);
 
-  const exportSourceEvent = () => {
-    console.log("export click");
+  // const exportSourceEvent = () => {
+  //   console.log("export click");
 
-    chrome.tabs.getSelected((current_tab) => {
-      const current_tab_id = current_tab.id;
-      chrome.storage.local.set({ export_response_display: "" }, () => {});
-      chrome.tabs.sendMessage(current_tab_id, {
-        type: "export_request",
-        source: "popup.js",
-        destination: "contentScript.js",
-      });
-    });
-  };
+  //   chrome.tabs.getSelected((current_tab) => {
+  //     const current_tab_id = current_tab.id;
+  //     chrome.storage.local.set({ export_response_display: "" }, () => {});
+  //     chrome.tabs.sendMessage(current_tab_id, {
+  //       type: "export_request",
+  //       source: "popup.js",
+  //       destination: "contentScript.js",
+  //     });
+  //   });
+  // };
 
-  useEffect(() => {
-    chrome.storage.onChanged.addListener(async (changes, namespace) => {
-      for (var key in changes) {
-        var storageChange = changes[key];
-        // console.log(
-        //     'Storage key "%s" in namespace "%s" changed. ' +
-        //         'Old value was "%s", new value is "%s".',
-        //     key,
-        //     namespace,
-        //     storageChange.oldValue,
-        //     storageChange.newValue
-        // );
+  // useEffect(() => {
+  //   chrome.storage.onChanged.addListener(async (changes, namespace) => {
+  //     for (var key in changes) {
+  //       var storageChange = changes[key];
+  //       // console.log(
+  //       //     'Storage key "%s" in namespace "%s" changed. ' +
+  //       //         'Old value was "%s", new value is "%s".',
+  //       //     key,
+  //       //     namespace,
+  //       //     storageChange.oldValue,
+  //       //     storageChange.newValue
+  //       // );
 
-        if (key === "export_response_display") {
-          // console.log("Success");
-          // console.log(JSON.stringify(storageChange.newValue));
-          await db.gitAdd(storageChange.newValue());
-        }
-      }
-    });
-  }, []);
+  //       if (key === "export_response_display") {
+  //         // console.log("Success");
+  //         // console.log(JSON.stringify(storageChange.newValue));
+  //         await db.gitAdd(storageChange.newValue());
+  //       }
+  //     }
+  //   });
+  // }, []);
 
   return (
     <div>
@@ -111,7 +111,8 @@ const GitAdd = ({ setPage }) => {
         onClick={() => {
           toggleClicked();
           setTimeout(() => setPage("commit"), 2000); //5초 딜레이
-          exportSourceEvent();
+          // exportSourceEvent();
+          db.gitAdd("img_url");
         }}
       >
         주머니에 내가 만든 도토리 넣기

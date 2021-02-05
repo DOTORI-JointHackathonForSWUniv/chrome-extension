@@ -109,7 +109,7 @@ const AddButton = styled.button`
 `;
 
 //이전 커밋 내용 로그에 보이기!
-const GitCommit = ({ setPage }) => {
+const GitCommit = ({ setPage, setName }) => {
   const [inputName, setInputName] = useState("");
   const [isTyping, setTyping] = useState(false);
   const [complete, setComplete] = useState("start");
@@ -130,6 +130,7 @@ const GitCommit = ({ setPage }) => {
   }, []);
 
   const gitCommit = async () => {
+    setName(inputName);
     await db.gitCommit(inputName);
   };
 
