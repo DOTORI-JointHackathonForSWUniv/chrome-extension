@@ -5,6 +5,7 @@ import commit from "../assets/commit.png";
 import reset from "../assets/reset.png";
 import styled from "styled-components";
 import Header from "./Header";
+import * as db from "../apis/firebase";
 
 const Wrapper = styled.div`
     background-color: #ffffff;
@@ -86,6 +87,22 @@ const GitPush = ({ history }) => {
     const movePage = (page) => {
         history.push(`/${page}`);
     };
+    const [curData, setData] = useState([]);
+
+    const getData = async () => {
+        const newData = await db.getTestData();
+        setData(curData.concat(newData));
+    };
+
+   
+    // 최초 렌더링 이후에 실행하기 위해 useEffect 내부에서 함수 실행
+    useEffect(() => {
+        getData();
+    }, []);
+
+    const gitPush = async () => {
+        await db.gitPush();
+    };
 
     return (
         <Wrapper>
@@ -113,6 +130,7 @@ const GitPush = ({ history }) => {
             <AddButton
                 onClick={() => {
                     setComplete(true);
+                    gitPush();
                 }}
                 style={{ backgroundColor: `${complete ? " #e5e5e5" : "#755e4c"}` }}
             >
