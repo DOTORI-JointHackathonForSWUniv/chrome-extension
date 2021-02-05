@@ -4,6 +4,7 @@ import { Route, Switch, BrowserRouter } from "react-router-dom";
 // import FirebaseTest from "./pages/FirebaseTest";
 import GitAdd from "./pages/GitAdd";
 import GitCommit from "./pages/GitCommit";
+import GitPush from "./pages/GitPush";
 
 function App() {
     // chrome.windows.getLastFocused({ populate: false }, function (currentWindow) {
@@ -16,6 +17,7 @@ function App() {
             <Switch>
                 <Route path="/add" component={GitAdd} exact></Route>
                 <Route path="/commit" component={GitCommit} exact></Route>
+                <Route path="/push" component={GitPush} exact></Route>
                 <Route render={({ location }) => <div>이 페이지는 존재하지 않습니다:{location.pathname}</div>}></Route>
             </Switch>
         </BrowserRouter>
