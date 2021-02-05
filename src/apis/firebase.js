@@ -8,8 +8,8 @@ const StatusEnum = {
 };
 Object.freeze(StatusEnum);
 
-const userId = "jSUP3XUfwgLHv6DmOeiP";
-
+// const userId = "jSUP3XUfwgLHv6DmOeiP";
+const userId = "MkiBUPyIhdgOefgKg82a";
 export const getTestData = async () => {
   let newData = [];
   const querySnapshot = await db.collection("test-collection").get();
@@ -216,6 +216,23 @@ export const gitLog = async () => {
   const querySnapshot = await db
     .collection("Commit")
     .where("creator", "==", userId)
+    .get();
+
+  let commits = [];
+
+  querySnapshot.forEach((doc) => {
+    const commit = doc.data();
+    commits.push(commit);
+  });
+
+  return commits;
+};
+
+export const gitLogNotPushed = async () => {
+  const querySnapshot = await db
+    .collection("Commit")
+    .where("creator", "==", userId)
+    .where("is_pushed", "==", false)
     .get();
 
   let commits = [];

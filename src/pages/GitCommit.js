@@ -75,6 +75,7 @@ const AddButton = styled.button`
     font-weight: bold;
 `;
 
+//이전 커밋 내용 로그에 보이기!
 const GitCommit = ({ setPage }) => {
     const [inputName, setInputName] = useState("");
     const [isTyping, setTyping] = useState(false);
@@ -95,9 +96,14 @@ const GitCommit = ({ setPage }) => {
         await db.gitCommit(inputName);
     };
 
-    const movePage = (page) => {
-        history.push(`/${page}`);
-    };
+    // const movePage = (page) => {
+    //     history.push(`/${page}`);
+    // };
+
+//     const gitLog = async () => {
+//     const newLog = await db.gitLog();
+//     setLog(curLog.concat(newLog));
+//   };
 
     return (
         <Wrapper>
