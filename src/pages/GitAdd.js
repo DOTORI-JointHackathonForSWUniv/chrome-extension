@@ -43,7 +43,7 @@ const moveAnimation = keyframes`
  0% {
   transform: translateX(0%) translateY(0%) rotate(0deg);
  }
- 50% { 
+ 50% {
      transform: translateX(125%) translateY(-200%) rotate(0deg);
      animation-timing-function: cubic-bezier(0.33333, 0, 0.66667, 0.33333) }
  100% {
@@ -92,7 +92,6 @@ const GitAdd = ({ setPage }) => {
 
     const exportSourceEvent = () => {
         console.log("export click");
-
         // chrome.tabs.getSelected((current_tab) => {
         //   const current_tab_id = current_tab.id;
         //   chrome.storage.local.set({ export_response_display: "" }, () => {});
@@ -168,5 +167,4 @@ const GitAdd = ({ setPage }) => {
         </Wrapper>
     );
 };
-
 export default GitAdd;

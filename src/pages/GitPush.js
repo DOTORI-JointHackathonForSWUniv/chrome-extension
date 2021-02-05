@@ -136,9 +136,8 @@ const AddButton = styled.button`
     margin-left: 30px;
 `;
 
-const GitPush = ({ setPage }) => {
+const GitPush = ({ name }) => {
     const [complete, setComplete] = useState(false);
-    const [curData, setData] = useState([]);
 
     const getData = async () => {
         const newData = await db.getTestData();
@@ -171,7 +170,7 @@ const GitPush = ({ setPage }) => {
                 <PushBox>
                     <CommitBox clicked={clicked} onClick={toggleClicked}>
                         <CommitImg src={commit}></CommitImg>
-                        <CommitName>겨울에 먹을 비상 도토리</CommitName>
+                        <CommitName>{name}</CommitName>
                     </CommitBox>
                     <HomeImg src={home}></HomeImg>
                 </PushBox>
