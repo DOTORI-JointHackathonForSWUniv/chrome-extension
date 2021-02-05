@@ -16,12 +16,12 @@ const moveAnimation = keyframes`
  0% {
   transform: translateX(0%) translateY(0%) rotate(0deg);
  }
- 50% { 
+ 50% {
      transform: translateX(125%) translateY(-200%) rotate(0deg);
      animation-timing-function: cubic-bezier(0.33333, 0, 0.66667, 0.33333) }
  100% {
    transform: translateX(250%) translateY(0%) rotate(360deg);
- } 
+ }
 `;
 const DotoriImg = styled.img`
   width: 113px;
@@ -56,7 +56,6 @@ const AddButton = styled.button`
 `;
 
 const GitAdd = ({ setPage }) => {
-  const [entryCode, setEntryCode] = useState({});
   const [clicked, setClicked] = useState(false);
   const toggleClicked = () => setClicked((value) => !value);
   // const [clicked2, setClicked2] = useState(false);
@@ -65,49 +64,38 @@ const GitAdd = ({ setPage }) => {
   const exportSourceEvent = () => {
     console.log("export click");
 
-    // chrome.tabs.getSelected((current_tab) => {
-    //   const current_tab_id = current_tab.id;
-    //   chrome.storage.local.set({ export_response_display: "" }, () => {});
-    //   chrome.tabs.sendMessage(current_tab_id, {
-    //     type: "export_request",
-    //     source: "popup.js",
-    //     destination: "contentScript.js",
-    //   });
-    // });
+    chrome.tabs.getSelected((current_tab) => {
+      const current_tab_id = current_tab.id;
+      chrome.storage.local.set({ export_response_display: "" }, () => {});
+      chrome.tabs.sendMessage(current_tab_id, {
+        type: "export_request",
+        source: "popup.js",
+        destination: "contentScript.js",
+      });
+    });
   };
 
-  const [curLog, setCurLog] = useState([]);
-  const gitLogNotPushed = async () => {
-    const newLog = await db.gitLog();
-    setCurLog(newLog);
-    console.log(newLog);
-  };
+  useEffect(() => {
+    chrome.storage.onChanged.addListener(async (changes, namespace) => {
+      for (var key in changes) {
+        var storageChange = changes[key];
+        // console.log(
+        //     'Storage key "%s" in namespace "%s" changed. ' +
+        //         'Old value was "%s", new value is "%s".',
+        //     key,
+        //     namespace,
+        //     storageChange.oldValue,
+        //     storageChange.newValue
+        // );
 
-  // useEffect(() => {
-  //   gitLogNotPushed();
-  //   chrome.storage.onChanged.addListener((changes, namespace) => {
-  //     for (var key in changes) {
-  //       var storageChange = changes[key];
-  //       // console.log(
-  //       //     'Storage key "%s" in namespace "%s" changed. ' +
-  //       //         'Old value was "%s", new value is "%s".',
-  //       //     key,
-  //       //     namespace,
-  //       //     storageChange.oldValue,
-  //       //     storageChange.newValue
-  //       // );
-  //       if (key === "export_response_display") {
-  //         // console.log("Success");
-  //         // console.log(JSON.stringify(storageChange.newValue));
-  //         setEntryCode(storageChange.newValue);
-  //       }
-  //     }
-  //   });
-  // }, []);
-
-  const gitAdd = async () => {
-    await db.gitAdd(entryCode);
-  };
+        if (key === "export_response_display") {
+          // console.log("Success");
+          // console.log(JSON.stringify(storageChange.newValue));
+          await db.gitAdd(storageChange.newValue());
+        }
+      }
+    });
+  }, []);
 
   return (
     <div>
@@ -124,7 +112,6 @@ const GitAdd = ({ setPage }) => {
           toggleClicked();
           setTimeout(() => setPage("commit"), 2000); //5초 딜레이
           exportSourceEvent();
-          gitAdd();
         }}
       >
         주머니에 내가 만든 도토리 넣기
@@ -132,5 +119,4 @@ const GitAdd = ({ setPage }) => {
     </div>
   );
 };
-
 export default GitAdd;
