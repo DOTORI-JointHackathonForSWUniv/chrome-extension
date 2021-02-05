@@ -6,6 +6,7 @@ import styled, { keyframes, css } from "styled-components";
 import Header from "./Header";
 import * as db from "../apis/firebase";
 
+
 const Wrapper = styled.div`
     background-color: #ffffff;
     display: flex;
@@ -126,6 +127,7 @@ const GitAdd = ({ setPage }) => {
         });
     }, []);
 
+
     const gitAdd = async () => {
         await db.gitAdd(entryCode);
     };
@@ -165,6 +167,8 @@ const GitAdd = ({ setPage }) => {
                     setTimeout(() => setPage("commit"), 3000); //5초 딜레이
                     exportSourceEvent();
                     gitAdd();
+
+
                 }}
 
             >

@@ -83,7 +83,7 @@ const GitCommit = ({ setPage }) => {
     const [curData, setData] = useState([]);
 
     const getData = async () => {
-    const newData = await db.getTestData();
+        const newData = await db.getTestData();
         setData(curData.concat(newData));
     };
 
@@ -96,6 +96,7 @@ const GitCommit = ({ setPage }) => {
         await db.gitCommit(inputName);
     };
 
+
     // const movePage = (page) => {
     //     history.push(`/${page}`);
     // };
@@ -105,23 +106,39 @@ const GitCommit = ({ setPage }) => {
 //     setLog(curLog.concat(newLog));
 //   };
 
+    const movePage = (page) => {
+        // eslint-disable-next-line no-restricted-globals
+        history.push(`/${page}`);
+    };
+
+
     return (
         <Wrapper>
             <Header></Header>
             <StepBox>
                 <Step>
-                    <StepText style={{ paddingTop: "20px" }}>도토리 넣기</StepText>
+                    <StepText style={{ paddingTop: "20px" }}>
+                        도토리 넣기
+                    </StepText>
                 </Step>
                 <Step>
                     <StepButton src={step}></StepButton>
-                    <StepText style={{ color: "#2ed37e" }}>주머니 이름 정하기</StepText>
+                    <StepText style={{ color: "#2ed37e" }}>
+                        주머니 이름 정하기
+                    </StepText>
                 </Step>
                 <Step>
-                    <StepText style={{ paddingTop: "20px" }}>도토리 보관하기</StepText>
+                    <StepText style={{ paddingTop: "20px" }}>
+                        도토리 보관하기
+                    </StepText>
                 </Step>
             </StepBox>
             <CommitBox>
-                {complete ? null : <CommitText>주머니 이름 정해줘~ 먹을 때 찾기 편하게 :)</CommitText>}
+                {complete ? null : (
+                    <CommitText>
+                        주머니 이름 정해줘~ 먹을 때 찾기 편하게 :)
+                    </CommitText>
+                )}
                 <CommitImg src={commit}></CommitImg>
                 {complete ? (
                     <CommitName>{inputName}</CommitName>
@@ -130,12 +147,11 @@ const GitCommit = ({ setPage }) => {
                         value={inputName}
                         onChange={(e) => {
                             setInputName(e.target.value);
-                            
+
                             setTyping(true);
                         }}
                     ></CommitInput>
                 )}
-                
             </CommitBox>
             <AddButton
                 onClick={() => {
@@ -144,11 +160,12 @@ const GitCommit = ({ setPage }) => {
                     gitCommit();
                     setTimeout(() => setPage("push"), 3000); //5초 딜레이
                 }}
-                style={{ backgroundColor: `${isTyping ? " #2ed37e" : "#e5e5e5"}` }}
+                style={{
+                    backgroundColor: `${isTyping ? " #2ed37e" : "#e5e5e5"}`,
+                }}
             >
                 주머니 이름 정하기
             </AddButton>
-           
         </Wrapper>
     );
 };

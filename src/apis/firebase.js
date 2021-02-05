@@ -216,6 +216,7 @@ export const gitLog = async () => {
   const querySnapshot = await db
     .collection("Commit")
     .where("creator", "==", userId)
+    .orderBy("created_at", "desc")
     .get();
 
   let commits = [];
