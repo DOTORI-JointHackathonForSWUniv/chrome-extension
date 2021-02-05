@@ -45,6 +45,8 @@ const ImgBox = styled.div`
 const DotoriImg = styled.img`
     width: 113px;
     height: 113px;
+    transform: ${({clicked}) => clicked ? 'translateX(400)': null}
+
 `;
 const BasketImg = styled.img`
     width: 215px;
@@ -67,6 +69,8 @@ const GitAdd = ({ history }) => {
         history.push(`/${page}`);
     };
 
+    const [cliked, setClicked] = useState(false);
+    
     return (
         <Wrapper>
             <Header></Header>
@@ -87,9 +91,9 @@ const GitAdd = ({ history }) => {
                 <BasketImg src={basket}></BasketImg>
             </ImgBox>
             <AddButton
-                onClick={() => {
-                    movePage("GitCommit");
-                }}
+                // onClick={() => {
+                //     movePage("GitCommit");
+                // }}
             >
                 주머니에 내가 만든 도토리 넣기
             </AddButton>
