@@ -15,6 +15,9 @@ const DotoriLogoImg = styled.img`
   padding-left: 22px;
   float: left;
 `;
+const LogIconWrapper = styled.div`
+  cursor: pointer;
+`;
 const LogImg = styled.img`
   padding-right: 22px;
   width: 28px;
@@ -34,107 +37,116 @@ const LogBox = styled.div`
   top: 60px;
   right: 25px;
   z-index: 2;
+  overflow: scroll;
 `;
 const Log = styled.div`
-  padding: 1rem 1rem;
+  width: 80%;
+  padding: 0.8rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: solid 0.5px #e5e5e5;
+`;
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+`;
+const Row = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-bottom: solid 0.5px #e5e5e5;
+  justify-content: space-between;
 `;
-const LogNum = styled.div`
-  color: #755e4c;
+const LogName = styled.div`
+  font-family: NanumGothic;
+  font-size: 12px;
   font-weight: bold;
-  font-size: 13px;
-`;
-const LogText = styled.div`
-  font-size: 11px;
+  letter-spacing: normal;
+  text-align: left;
   color: #332820;
-  padding: 0 15px;
+`;
+const LogDate = styled.div`
+  width: 100%;
+  margin: 4px 4px 1px 4px;
+  font-family: NanumGothic;
+  font-size: 10px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.14;
+  letter-spacing: normal;
+  text-align: left;
+  color: #959595;
 `;
 const LogReset = styled.img`
-  width: 23px;
-  height: 22px;
+  width: 25px;
+  height: 23px;
+  cursor: pointer;
 `;
 
 const Header = () => {
   const [openLog, setLog] = useState(false);
-  const [curData, setData] = useState([]);
   const [curLog, setCurLog] = useState([]);
 
-  const getData = async () => {
-    const newData = await db.getTestData();
-    setData(curData.concat(newData));
+  const gitLogNotPushed = async () => {
+    const newLog = await db.gitLogNotPushed();
+    setCurLog(newLog);
   };
 
-  // 최초 렌더링 이후에 실행하기 위해 useEffect 내부에서 함수 실행
-  useEffect(() => {
-    getData();
-    gitLogNotPushed();
-  }, []);
+  const changeOpenLog = async () => {
+    if (!openLog) {
+      await gitLogNotPushed();
+    }
+    setLog(!openLog);
+  };
 
-  // const gitLog = async () => {
-  //     const newLog = await db.gitLog();
-  //     setCurLog(curLog.concat(newLog));
-  // };
+  const getPrittyNum = (num) => {
+    return num < 10 ? "0" + num.toString() : num.toString();
+  };
 
-  const gitLogNotPushed = async () => {
-    const newLog = await db.gitLog();
-    setCurLog(newLog);
+  const resetLog = async (id) => {
+    db.gitReset(id).then(() => {
+      db.gitLogNotPushed().then((newLog) => {
+        setCurLog(newLog);
+      });
+    });
   };
 
   return (
     <Wrapper>
       <DotoriLogoImg src={logo}></DotoriLogoImg>
-      <div
-        onClick={() => {
-          //gitLogNotPushed();
-          setLog(!openLog);
-        }}
-        style={{ cursor: "pointer" }}
-      >
+      <LogIconWrapper onClick={changeOpenLog}>
         <LogImg src={log}></LogImg>
-      </div>
-
-      {/* {openLog ? (
-                <LogBox>
-                    <Log>
-                        {/* <LogNum>1</LogNum>
-                        <LogText>겨울에 먹을 비상 도토리</LogText>
-                        <LogReset src={back}></LogReset> */}
-      {/* 
-                {curLog.map((log, index) => {
-                const date = log.created_at.toDate();
-                return (
-                <LogText key={index}>
-                    {log.name}, {date.getMonth()+1}월 {date.getDay()}일 {date.getHours()}:
-                    {date.getMinutes()}
-                </LogText>
-                
-                );
-            })}
-            <LogReset src={back}></LogReset>
-                    </Log>
-                </LogBox>
-            ) : null} */}
-
+      </LogIconWrapper>
       {openLog ? (
-        <div>
+        <LogBox>
           {curLog.map((log, index) => {
-            const date = log.created_at.toDate();
-            return (
-              <LogBox>
-                <Log>
-                  <LogText key={index}>
-                    {log.name}, {date.getMonth() + 1}월 {date.getDay()}일{" "}
-                    {date.getHours()}:{date.getMinutes()}
-                  </LogText>
-                  <LogReset src={back}></LogReset>
+            if (log !== undefined) {
+              const date = log.created_at.toDate();
+              const month = getPrittyNum(date.getMonth() + 1);
+              const day = getPrittyNum(date.getDay());
+              const hour = getPrittyNum(date.getHours());
+              const minute = getPrittyNum(date.getMinutes());
+              return (
+                <Log key={index}>
+                  <Row>
+                    <LogName>{log.name}</LogName>
+                    <LogReset
+                      src={back}
+                      onClick={() => resetLog(log.id)}
+                    ></LogReset>
+                  </Row>
+                  <LogDate>
+                    2021/{month}/{day} {hour}:{minute}
+                  </LogDate>
                 </Log>
-              </LogBox>
-            );
+              );
+            }
           })}
-        </div>
+        </LogBox>
       ) : null}
     </Wrapper>
   );

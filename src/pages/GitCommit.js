@@ -167,7 +167,7 @@ const GitCommit = ({ setPage }) => {
             setTyping(false);
             gitCommit();
             toggleCompleted("done");
-            setTimeout(() => setPage("push"), 3000); //5초 딜레이
+            setTimeout(() => setPage("push"), 2000); //5초 딜레이
           }}
           style={{
             backgroundColor: `${isTyping ? " #2ed37e" : "#e5e5e5"}`,

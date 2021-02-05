@@ -183,8 +183,8 @@ const modifyCommitStatusToPushed = async () => {
 // commitId를 준 commit 이후에 한 커밋과 관련된 File, Commit, Push를 모두 없앱니다.
 export const gitReset = async (commitId) => {
   const commitRef = await db.collection("Commit").doc(commitId).get();
-  const commit = await commitRef.data();
-
+  const commit = commitRef.data();
+  console.log("@@@id: ", commitId);
   console.log("@@@ removing files & commits created after ", commit.created_at);
   commit.files.map(async (file) => {
     const fileId = file.id;
@@ -222,7 +222,8 @@ export const gitLog = async () => {
   let commits = [];
 
   querySnapshot.forEach((doc) => {
-    const commit = doc.data();
+    let commit = doc.data();
+    commit.id = doc.id;
     commits.push(commit);
   });
 
@@ -234,12 +235,14 @@ export const gitLogNotPushed = async () => {
     .collection("Commit")
     .where("creator", "==", userId)
     .where("is_pushed", "==", false)
+    .orderBy("created_at", "desc")
     .get();
 
   let commits = [];
 
   querySnapshot.forEach((doc) => {
-    const commit = doc.data();
+    let commit = doc.data();
+    commit.id = doc.id;
     commits.push(commit);
   });
 
