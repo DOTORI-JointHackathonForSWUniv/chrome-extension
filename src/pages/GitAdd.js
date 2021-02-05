@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import dotori from "../assets/dotori.png";
 import basket from "../assets/basket.png";
 import step from "../assets/step.png";
-import styled, {keyframes, css} from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import Header from "./Header";
 
 const Wrapper = styled.div`
     background-color: #ffffff;
-    border-style: solid;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,21 +41,28 @@ const ImgBox = styled.div`
     align-items: center;
 `;
 const moveAnimation = keyframes`
- from {
-  transform: translationX(0%);
+ 0% {
+  transform: translateX(0%) translateY(0%) rotate(0deg);
  }
- to {
-   transform: translateX(250%);
- }
+ 50% { 
+     transform: translateX(125%) translateY(-200%) rotate(0deg);
+     animation-timing-function: cubic-bezier(0.33333, 0, 0.66667, 0.33333) }
+ 100% {
+   transform: translateX(250%) translateY(0%) rotate(360deg);
+ } 
 `;
 const DotoriImg = styled.img`
     width: 113px;
     height: 113px;
-    animation-name: ${({ clicked }) => clicked ? css`${moveAnimation};` : null};
-    animation-duration: 2s;
+    animation-name: ${({ clicked }) =>
+        clicked
+            ? css`
+                  ${moveAnimation};
+              `
+            : null};
+    animation-duration: 1.5s;
     animation-iteraion-count: infinite;
     animation-fill-mode: forwards;
-    
 `;
 const BasketImg = styled.img`
     width: 215px;
@@ -64,8 +70,6 @@ const BasketImg = styled.img`
     margin-left: 8rem;
     z-index: 1;
 `;
-
-
 
 const AddButton = styled.button`
     width: 460px;
@@ -77,13 +81,9 @@ const AddButton = styled.button`
     font-size: 20px;
 `;
 
-const GitAdd = ({ history }) => {
-    const movePage = (page) => {
-        history.push(`/${page}`);
-    };
-
+const GitAdd = ({ setPage }) => {
     const [clicked, setClicked] = useState(false);
-    const toggleClicked = () => setClicked(value => !value);
+    const toggleClicked = () => setClicked((value) => !value);
     // const [clicked2, setClicked2] = useState(false);
     // const toggleClicked2 = () => setClicked2(value => !value);
 
@@ -109,8 +109,7 @@ const GitAdd = ({ history }) => {
             <AddButton
                 onClick={() => {
                     toggleClicked();
-                    setTimeout(() => 
-                        movePage("GitCommit"), 5000); //5초 딜레이
+                    setTimeout(() => setPage("commit"), 3000); //5초 딜레이
                 }}
                 // onClick={toggleClicked}
             >

@@ -7,7 +7,6 @@ import Header from "./Header";
 
 const Wrapper = styled.div`
     background-color: #ffffff;
-    border-style: solid;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -81,14 +80,10 @@ const AddButton = styled.button`
     font-weight: bold;
 `;
 
-const GitCommit = ({ history }) => {
+const GitCommit = ({ setPage }) => {
     const [inputName, setInputName] = useState("");
     const [isTyping, setTyping] = useState(false);
     const [complete, setComplete] = useState(false);
-
-    const movePage = (page) => {
-        history.push(`/${page}`);
-    };
 
     return (
         <Wrapper>
@@ -123,9 +118,9 @@ const GitCommit = ({ history }) => {
             </CommitBox>
             <AddButton
                 onClick={() => {
-                    // movePage("GitPush");
                     setTyping(false);
                     setComplete(true);
+                    setTimeout(() => setPage("push"), 3000); //5초 딜레이
                 }}
                 style={{ backgroundColor: `${isTyping ? " #2ed37e" : "#e5e5e5"}` }}
             >
