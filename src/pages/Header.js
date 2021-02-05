@@ -17,7 +17,7 @@ const DotoriLogoImg = styled.img`
 `;
 const LogImg = styled.img`
     padding-right: 22px;
-    width: 28px;
+    width: 50px;
     height: 27px;
     float: right;
 `;
