@@ -111,7 +111,6 @@ const GitAdd = ({ history }) => {
                     toggleClicked();
                     setTimeout(() => 
                         movePage("GitCommit"), 5000); //5초 딜레이
-                    
                 }}
                 // onClick={toggleClicked}
             >
