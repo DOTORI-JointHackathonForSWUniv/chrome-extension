@@ -89,7 +89,7 @@ const moveAnimation = keyframes`
      transform: translateX(125%)
      animation-timing-function: cubic-bezier(0.33333, 0, 0.66667, 0.33333) }
  100% {
-   transform: scale(1) translateX(256%) translateY(50%);
+   transform: scale(1) translateX(290%) translateY(50%);
  } 
 `;
 const CommitBox = styled.div`
@@ -138,6 +138,7 @@ const AddButton = styled.button`
 
 const GitPush = ({ name }) => {
     const [complete, setComplete] = useState(false);
+    const [curData, setData] = useState([]);
 
     const getData = async () => {
         const newData = await db.getTestData();
