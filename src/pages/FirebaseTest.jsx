@@ -1,7 +1,7 @@
 import React from "react";
 
 import * as db from "../apis/firebase";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function FirebaseTest() {
   const [curData, setData] = useState([]);
@@ -16,12 +16,27 @@ function FirebaseTest() {
     getData();
   }, []);
 
+  const gitAdd = async () => {
+    await db.gitAdd({ code1: "temp code!", code2: "testing!" }, true);
+  };
+
+  const gitCommit = async () => {
+    await db.gitCommit("이름 없는 커밋");
+  };
+
+  const gitPush = async () => {
+    await db.gitPush();
+  };
+
   return curData.length > 0 ? (
     <div>
+      <button onClick={gitAdd}>Git Add Test</button>
+      <button onClick={gitCommit}>Git Commit Test</button>
+      <button onClick={gitPush}>Git Push Test</button>
       {curData.map((data, index) => {
         return (
           <div key={index}>
-            id: {data.id}, value: {data.value}{" "}
+            id: {data.id}, value: {data.value}
           </div>
         );
       })}
