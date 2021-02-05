@@ -63,6 +63,7 @@ const AddButton = styled.button`
   color: #ffffff;
   font-size: 20px;
   font-weight: bold;
+  cursor: pointer;
 `;
 
 const GitPush = ({ setPage }) => {

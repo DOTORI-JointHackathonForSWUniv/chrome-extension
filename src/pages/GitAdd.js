@@ -51,6 +51,7 @@ const AddButton = styled.button`
   text-align: center;
   color: #ffffff;
   font-size: 20px;
+  cursor: pointer;
 `;
 
 const GitAdd = ({ setPage }) => {
