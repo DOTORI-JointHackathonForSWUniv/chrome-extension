@@ -4,6 +4,7 @@ import commit from "../assets/commit.png";
 import reset from "../assets/reset.png";
 import styled from "styled-components";
 import Header from "./Header";
+import * as db from "../apis/firebase";
 
 const Wrapper = styled.div`
     background-color: #ffffff;
@@ -78,6 +79,25 @@ const GitCommit = ({ setPage }) => {
     const [inputName, setInputName] = useState("");
     const [isTyping, setTyping] = useState(false);
     const [complete, setComplete] = useState(false);
+    const [curData, setData] = useState([]);
+
+    const getData = async () => {
+    const newData = await db.getTestData();
+        setData(curData.concat(newData));
+    };
+
+    // 최초 렌더링 이후에 실행하기 위해 useEffect 내부에서 함수 실행
+    useEffect(() => {
+        getData();
+    }, []);
+
+    const gitCommit = async () => {
+        await db.gitCommit(inputName);
+    };
+
+    const movePage = (page) => {
+        history.push(`/${page}`);
+    };
 
     return (
         <Wrapper>
@@ -104,21 +124,25 @@ const GitCommit = ({ setPage }) => {
                         value={inputName}
                         onChange={(e) => {
                             setInputName(e.target.value);
+                            
                             setTyping(true);
                         }}
                     ></CommitInput>
                 )}
+                
             </CommitBox>
             <AddButton
                 onClick={() => {
                     setTyping(false);
                     setComplete(true);
+                    gitCommit();
                     setTimeout(() => setPage("push"), 3000); //5초 딜레이
                 }}
                 style={{ backgroundColor: `${isTyping ? " #2ed37e" : "#e5e5e5"}` }}
             >
                 주머니 이름 정하기
             </AddButton>
+           
         </Wrapper>
     );
 };
