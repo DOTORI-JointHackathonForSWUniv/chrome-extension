@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
-import FirebaseTest from "./pages/FirebaseTest";
+// import FirebaseTest from "./pages/FirebaseTest";
+import GitAdd from "./pages/GitAdd";
 
 function App() {
   // chrome.windows.getLastFocused({ populate: false }, function (currentWindow) {
@@ -10,7 +11,7 @@ function App() {
 
   return (
     <div className="App">
-      <FirebaseTest />
+      <GitAdd />
     </div>
   );
 }
