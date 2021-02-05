@@ -12,7 +12,8 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 99%;
+    height: 600px;
+    border: 1px solid black;
 `;
 const StepBox = styled.span`
     display: flex;
@@ -37,7 +38,7 @@ const StepText = styled.div`
 `;
 
 const PushBox = styled.div`
-    padding: 4rem 0;
+    padding: 5rem 0;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -47,7 +48,7 @@ const moveAnimation = keyframes`
     transform: scale(1)
  }
  30%{
-    transform: scale(2)
+    transform: scale(1.7)
  }
  50% { 
      transform: translateX(125%)
@@ -107,7 +108,6 @@ const GitPush = ({ setPage }) => {
         setData(curData.concat(newData));
     };
 
-   
     // 최초 렌더링 이후에 실행하기 위해 useEffect 내부에서 함수 실행
     useEffect(() => {
         getData();
