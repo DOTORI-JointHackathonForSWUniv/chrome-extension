@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import dotori from "../assets/dotori.png";
 import basket from "../assets/basket.png";
 import step from "../assets/step.png";
@@ -45,7 +45,7 @@ const ImgBox = styled.div`
 const DotoriImg = styled.img`
     width: 113px;
     height: 113px;
-    transform: ${({clicked}) => clicked ? 'translateX(400)': null}
+    transform: ${({clicked}) => clicked ? 'translateX(295px)': null}
 
 `;
 const BasketImg = styled.img`
@@ -69,8 +69,11 @@ const GitAdd = ({ history }) => {
         history.push(`/${page}`);
     };
 
-    const [cliked, setClicked] = useState(false);
-    
+    const [clicked, setClicked] = useState(false);
+    const toggleClicked = () => setClicked(value => !value);
+    const [clicked2, setClicked2] = useState(false);
+    const toggleClicked2 = () => setClicked2(value => !value);
+
     return (
         <Wrapper>
             <Header></Header>
@@ -87,13 +90,14 @@ const GitAdd = ({ history }) => {
                 </Step>
             </StepBox>
             <ImgBox>
-                <DotoriImg src={dotori}></DotoriImg>
+                <DotoriImg src={dotori} clicked={clicked} onClick={toggleClicked}></DotoriImg>
                 <BasketImg src={basket}></BasketImg>
             </ImgBox>
             <AddButton
                 // onClick={() => {
                 //     movePage("GitCommit");
                 // }}
+                onClick={toggleClicked}
             >
                 주머니에 내가 만든 도토리 넣기
             </AddButton>
