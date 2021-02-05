@@ -7,7 +7,6 @@ import Header from "./Header";
 
 const Wrapper = styled.div`
     background-color: #ffffff;
-    border-style: solid;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -64,12 +63,6 @@ const CommitName = styled.div`
     font-weight: 800;
     color: #332820;
 `;
-const ResetImg = styled.img`
-    width: 43px;
-    height: 41px;
-    position: absolute;
-    margin-left: 110px;
-`;
 const AddButton = styled.button`
     border: none;
     width: 460px;
@@ -81,14 +74,10 @@ const AddButton = styled.button`
     font-weight: bold;
 `;
 
-const GitCommit = ({ history }) => {
+const GitCommit = ({ setPage }) => {
     const [inputName, setInputName] = useState("");
     const [isTyping, setTyping] = useState(false);
     const [complete, setComplete] = useState(false);
-
-    const movePage = (page) => {
-        history.push(`/${page}`);
-    };
 
     return (
         <Wrapper>
@@ -108,7 +97,6 @@ const GitCommit = ({ history }) => {
             <CommitBox>
                 {complete ? null : <CommitText>주머니 이름 정해줘~ 먹을 때 찾기 편하게 :)</CommitText>}
                 <CommitImg src={commit}></CommitImg>
-                {complete ? <ResetImg src={reset}></ResetImg> : null}
                 {complete ? (
                     <CommitName>{inputName}</CommitName>
                 ) : (
@@ -123,9 +111,9 @@ const GitCommit = ({ history }) => {
             </CommitBox>
             <AddButton
                 onClick={() => {
-                    // movePage("GitPush");
                     setTyping(false);
                     setComplete(true);
+                    setTimeout(() => setPage("push"), 3000); //5초 딜레이
                 }}
                 style={{ backgroundColor: `${isTyping ? " #2ed37e" : "#e5e5e5"}` }}
             >
