@@ -85,13 +85,13 @@ const Header = () => {
 
     return (
         <Wrapper>
-
             <DotoriLogoImg src={logo}></DotoriLogoImg>
-            <div onClick={() => {
-                //gitLogNotPushed();
-                setLog(!openLog);
-            }}
-            >   
+            <div
+                onClick={() => {
+                    //gitLogNotPushed();
+                    setLog(!openLog);
+                }}
+            >
                 <LogImg src={log}></LogImg>
             </div>
 
@@ -101,7 +101,7 @@ const Header = () => {
                         {/* <LogNum>1</LogNum>
                         <LogText>겨울에 먹을 비상 도토리</LogText>
                         <LogReset src={back}></LogReset> */}
-{/* 
+            {/* 
                 {curLog.map((log, index) => {
                 const date = log.created_at.toDate();
                 return (
@@ -118,32 +118,22 @@ const Header = () => {
             ) : null} */}
 
             {openLog ? (
-            <div>
-            {curLog.map((log, index) => {
-                const date = log.created_at.toDate();
-                return (
-                    <LogBox>
-                    <Log>
-                <LogText key={index}>
-                    {log.name}, {date.getMonth()+1}월 {date.getDay()}일 {date.getHours()}:
-                    {date.getMinutes()}
-                </LogText>
-                <LogReset src={back}></LogReset>
-                    </Log>
-                </LogBox>
-                );
-            })
-            }
-            </div>
-
-
-                
-                
-            
-            ): null}
-
-
-
+                <div>
+                    {curLog.map((log, index) => {
+                        const date = log.created_at.toDate();
+                        return (
+                            <LogBox>
+                                <Log>
+                                    <LogText key={index}>
+                                        {log.name}, {date.getMonth() + 1}월 {date.getDay()}일 {date.getHours()}:{date.getMinutes()}
+                                    </LogText>
+                                    <LogReset src={back}></LogReset>
+                                </Log>
+                            </LogBox>
+                        );
+                    })}
+                </div>
+            ) : null}
         </Wrapper>
     );
 };

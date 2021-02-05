@@ -6,7 +6,6 @@ import styled, { keyframes, css } from "styled-components";
 import Header from "./Header";
 import * as db from "../apis/firebase";
 
-
 const Wrapper = styled.div`
     background-color: #ffffff;
     display: flex;
@@ -15,6 +14,7 @@ const Wrapper = styled.div`
     height: 600px;
     border: 1px solid black;
 `;
+const BoxWrapper = styled.div``;
 const StepBox = styled.span`
     display: flex;
     flex-direction: row;
@@ -106,7 +106,15 @@ const GitAdd = ({ setPage }) => {
         // });
     };
 
+    const [curLog, setCurLog] = useState([]);
+    const gitLogNotPushed = async () => {
+        const newLog = await db.gitLog();
+        setCurLog(newLog);
+        console.log(newLog);
+    };
+
     useEffect(() => {
+        gitLogNotPushed();
         // chrome.storage.onChanged.addListener((changes, namespace) => {
         //     for (var key in changes) {
         //         var storageChange = changes[key];
@@ -126,7 +134,6 @@ const GitAdd = ({ setPage }) => {
         //     }
         // });
     }, []);
-
 
     const gitAdd = async () => {
         await db.gitAdd(entryCode);
@@ -157,16 +164,11 @@ const GitAdd = ({ setPage }) => {
                     setTimeout(() => setPage("commit"), 3000); //5초 딜레이
                     exportSourceEvent();
                     gitAdd();
-                    
-
                 }}
-
             >
                 주머니에 내가 만든 도토리 넣기
             </AddButton>
-            <p>
-            {JSON.stringify(entryCode)}
-            </p>
+            <p>{JSON.stringify(entryCode)}</p>
         </Wrapper>
     );
 };
