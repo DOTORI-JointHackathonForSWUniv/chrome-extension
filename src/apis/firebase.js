@@ -212,18 +212,18 @@ const removeFileById = async (fileId) => {
   }
 };
 
-export const getFileById = async (id) => {
-  const file = db.collection("File").doc(id);
-  return file;
-};
+export const gitLog = async () => {
+  const querySnapshot = await db
+    .collection("Commit")
+    .where("creator", "==", userId)
+    .get();
 
-export const getCommitById = async (id) => {
-  const commit = db.collection("Commit").doc(id);
+  let commits = [];
 
-  return commit;
-};
+  querySnapshot.forEach((doc) => {
+    const commit = doc.data();
+    commits.push(commit);
+  });
 
-export const getPushById = async (id) => {
-  const push = db.collection("Push").doc(id);
-  return push;
+  return commits;
 };
