@@ -2,13 +2,13 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB-yoW-QZynVqiSr5BM4dwGEhNjUDR3inE",
-  authDomain: "dotori-41ba8.firebaseapp.com",
-  projectId: "dotori-41ba8",
-  storageBucket: "dotori-41ba8.appspot.com",
-  messagingSenderId: "594001440988",
-  appId: "1:594001440988:web:79a65cb2a6b4a1c1af8419",
-  measurementId: "G-0V35T5BELS",
+  apiKey: "AIzaSyB_c8eCmsNsde6N7CCACXxpRpBnsw2gSjU",
+  authDomain: "dotori-sw-hackerton.firebaseapp.com",
+  projectId: "dotori-sw-hackerton",
+  storageBucket: "dotori-sw-hackerton.appspot.com",
+  messagingSenderId: "807484776999",
+  appId: "1:807484776999:web:f8b6222ba3c65ac073a402",
+  measurementId: "G-GMVNW3HC70",
 };
 
 // firebaseConfig 정보로 firebase 시작

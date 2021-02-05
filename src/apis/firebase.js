@@ -8,22 +8,8 @@ const StatusEnum = {
 };
 Object.freeze(StatusEnum);
 
-const userId = "jSUP3XUfwgLHv6DmOeiP";
+const userId = "USERID";
 
-export const getTestData = async () => {
-  let newData = [];
-  const querySnapshot = await db.collection("test-collection").get();
-
-  querySnapshot.forEach((doc) => {
-    const value = doc.data().value ?? doc.data().dotori;
-    const id = doc.id;
-    newData.push({ value: value, id: id });
-  });
-
-  return newData;
-};
-
-// is_public은 boolean type으로 주세요!
 export const gitAdd = async (code) => {
   const creator = userId;
   const created_at = firebase.firestore.FieldValue.serverTimestamp();
@@ -76,8 +62,6 @@ const getAddedFiles = async () => {
     .get();
 
   querySnapshot.forEach((doc) => {
-    // let data = doc.data();
-    // data.id = doc.id;
     files.push(doc.id);
   });
 
@@ -136,8 +120,6 @@ const getUnpushedCommits = async () => {
     .get();
 
   querySnapshot.forEach((doc) => {
-    // let data = doc.data();
-    // data.id = doc.id;
     pushes.push(doc.id);
   });
 

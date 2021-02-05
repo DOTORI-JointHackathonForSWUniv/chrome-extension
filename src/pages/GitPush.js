@@ -99,18 +99,6 @@ const AddButton = styled.button`
 const GitPush = ({ name }) => {
   const [complete, setComplete] = useState(false);
 
-  const [curData, setData] = useState([]);
-
-  const getData = async () => {
-    const newData = await db.getTestData();
-    setData(curData.concat(newData));
-  };
-
-  // 최초 렌더링 이후에 실행하기 위해 useEffect 내부에서 함수 실행
-  useEffect(() => {
-    getData();
-  }, []);
-
   const gitPush = async () => {
     await db.gitPush();
   };
