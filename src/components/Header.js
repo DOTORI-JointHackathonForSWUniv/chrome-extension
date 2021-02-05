@@ -39,6 +39,14 @@ const LogBox = styled.div`
   z-index: 2;
   overflow: scroll;
 `;
+const LogBoxEmpty = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+`;
 const Log = styled.div`
   width: 80%;
   padding: 0.8rem 1rem;
@@ -47,11 +55,6 @@ const Log = styled.div`
   align-items: center;
   justify-content: space-between;
   border-bottom: solid 0.5px #e5e5e5;
-`;
-const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
 `;
 const Row = styled.div`
   width: 100%;
@@ -123,29 +126,33 @@ const Header = () => {
       </LogIconWrapper>
       {openLog ? (
         <LogBox>
-          {curLog.map((log, index) => {
-            if (log !== undefined) {
-              const date = log.created_at.toDate();
-              const month = getPrittyNum(date.getMonth() + 1);
-              const day = getPrittyNum(date.getDay());
-              const hour = getPrittyNum(date.getHours());
-              const minute = getPrittyNum(date.getMinutes());
-              return (
-                <Log key={index}>
-                  <Row>
-                    <LogName>{log.name}</LogName>
-                    <LogReset
-                      src={back}
-                      onClick={() => resetLog(log.id)}
-                    ></LogReset>
-                  </Row>
-                  <LogDate>
-                    2021/{month}/{day} {hour}:{minute}
-                  </LogDate>
-                </Log>
-              );
-            }
-          })}
+          {curLog.length > 0 ? (
+            curLog.map((log, index) => {
+              if (log !== undefined) {
+                const date = log.created_at.toDate();
+                const month = getPrittyNum(date.getMonth() + 1);
+                const day = getPrittyNum(date.getDay());
+                const hour = getPrittyNum(date.getHours());
+                const minute = getPrittyNum(date.getMinutes());
+                return (
+                  <Log key={index}>
+                    <Row>
+                      <LogName>{log.name}</LogName>
+                      <LogReset
+                        src={back}
+                        onClick={() => resetLog(log.id)}
+                      ></LogReset>
+                    </Row>
+                    <LogDate>
+                      2021/{month}/{day} {hour}:{minute}
+                    </LogDate>
+                  </Log>
+                );
+              }
+            })
+          ) : (
+            <LogBoxEmpty>모두 집에 들어갔어요!</LogBoxEmpty>
+          )}
         </LogBox>
       ) : null}
     </Wrapper>
