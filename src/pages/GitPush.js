@@ -101,6 +101,10 @@ const GitPush = ({ setPage }) => {
           toggleClicked();
           setComplete(true);
           gitPush();
+          setTimeout(
+            () => window.open("https://dotori-2021.web.app/", "_blank"),
+            3000
+          ); //5초 딜레이
         }}
         style={{ backgroundColor: `${complete ? " #e5e5e5" : "#755e4c"}` }}
       >

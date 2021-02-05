@@ -68,17 +68,17 @@ function StepBox({ changeTab, tab }) {
       <Step onClick={moveToCommit} isCurTab={curTab == "commit"}>
         {curTab == "commit" ? <StepButton src={step}></StepButton> : <div />}
         {curTab == "commit" ? (
-          <StepTextSelected>도토리 넣기</StepTextSelected>
+          <StepTextSelected>주머니 이름 정하기</StepTextSelected>
         ) : (
-          <StepTextDefault>도토리 넣기</StepTextDefault>
+          <StepTextDefault>주머니 이름 정하기</StepTextDefault>
         )}
       </Step>
       <Step onClick={moveToPush} isCurTab={curTab == "push"}>
         {curTab == "push" ? <StepButton src={step}></StepButton> : <div />}
         {curTab == "push" ? (
-          <StepTextSelected>도토리 넣기</StepTextSelected>
+          <StepTextSelected>도토리 보관하기</StepTextSelected>
         ) : (
-          <StepTextDefault>도토리 넣기</StepTextDefault>
+          <StepTextDefault>도토리 보관하기</StepTextDefault>
         )}
       </Step>
     </StepBoxRoot>
