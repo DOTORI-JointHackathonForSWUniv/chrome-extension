@@ -32,50 +32,39 @@ const StepTextDefault = styled.div`
 `;
 
 function StepBox({ changeTab, tab }) {
-  const [curTab, setCurTab] = useState(tab);
-
   const moveToAdd = () => {
     changeTab("add");
-    setCurTab("add");
   };
 
   const moveToCommit = () => {
     changeTab("commit");
-    setCurTab("commit");
   };
 
   const moveToPush = () => {
     changeTab("push");
-    setCurTab("push");
   };
-
-  useEffect(() => {
-    setCurTab(curTab);
-  }, []);
-
-  console.log("@@ cur tab ", curTab);
 
   return (
     <StepBoxRoot>
-      <Step onClick={moveToAdd} isCurTab={curTab == "add"}>
-        {curTab == "add" ? <StepButton src={step}></StepButton> : <div />}
-        {curTab == "add" ? (
+      <Step onClick={moveToAdd} isCurTab={tab == "add"}>
+        {tab == "add" ? <StepButton src={step}></StepButton> : <div />}
+        {tab == "add" ? (
           <StepTextSelected>도토리 넣기</StepTextSelected>
         ) : (
           <StepTextDefault>도토리 넣기</StepTextDefault>
         )}
       </Step>
-      <Step onClick={moveToCommit} isCurTab={curTab == "commit"}>
-        {curTab == "commit" ? <StepButton src={step}></StepButton> : <div />}
-        {curTab == "commit" ? (
+      <Step onClick={moveToCommit} isCurTab={tab == "commit"}>
+        {tab == "commit" ? <StepButton src={step}></StepButton> : <div />}
+        {tab == "commit" ? (
           <StepTextSelected>주머니 이름 정하기</StepTextSelected>
         ) : (
           <StepTextDefault>주머니 이름 정하기</StepTextDefault>
         )}
       </Step>
-      <Step onClick={moveToPush} isCurTab={curTab == "push"}>
-        {curTab == "push" ? <StepButton src={step}></StepButton> : <div />}
-        {curTab == "push" ? (
+      <Step onClick={moveToPush} isCurTab={tab == "push"}>
+        {tab == "push" ? <StepButton src={step}></StepButton> : <div />}
+        {tab == "push" ? (
           <StepTextSelected>도토리 보관하기</StepTextSelected>
         ) : (
           <StepTextDefault>도토리 보관하기</StepTextDefault>

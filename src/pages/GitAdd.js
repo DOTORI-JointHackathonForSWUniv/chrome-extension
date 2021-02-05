@@ -4,6 +4,7 @@ import basket from "../assets/basket.png";
 import step from "../assets/step.png";
 import styled, { keyframes, css } from "styled-components";
 import Header from "../components/Header";
+import * as db from "../apis/firebase";
 
 const ImgBox = styled.div`
   padding: 5rem 0;
@@ -55,10 +56,58 @@ const AddButton = styled.button`
 `;
 
 const GitAdd = ({ setPage }) => {
+  const [entryCode, setEntryCode] = useState({});
   const [clicked, setClicked] = useState(false);
   const toggleClicked = () => setClicked((value) => !value);
   // const [clicked2, setClicked2] = useState(false);
   // const toggleClicked2 = () => setClicked2(value => !value);
+
+  const exportSourceEvent = () => {
+    console.log("export click");
+
+    chrome.tabs.getSelected((current_tab) => {
+      const current_tab_id = current_tab.id;
+      chrome.storage.local.set({ export_response_display: "" }, () => {});
+      chrome.tabs.sendMessage(current_tab_id, {
+        type: "export_request",
+        source: "popup.js",
+        destination: "contentScript.js",
+      });
+    });
+  };
+
+  const [curLog, setCurLog] = useState([]);
+  const gitLogNotPushed = async () => {
+    const newLog = await db.gitLog();
+    setCurLog(newLog);
+    console.log(newLog);
+  };
+
+  useEffect(() => {
+    gitLogNotPushed();
+    chrome.storage.onChanged.addListener((changes, namespace) => {
+      for (var key in changes) {
+        var storageChange = changes[key];
+        // console.log(
+        //     'Storage key "%s" in namespace "%s" changed. ' +
+        //         'Old value was "%s", new value is "%s".',
+        //     key,
+        //     namespace,
+        //     storageChange.oldValue,
+        //     storageChange.newValue
+        // );
+        if (key === "export_response_display") {
+          // console.log("Success");
+          // console.log(JSON.stringify(storageChange.newValue));
+          setEntryCode(storageChange.newValue);
+        }
+      }
+    });
+  }, []);
+
+  const gitAdd = async () => {
+    await db.gitAdd(entryCode);
+  };
 
   return (
     <div>
@@ -74,6 +123,8 @@ const GitAdd = ({ setPage }) => {
         onClick={() => {
           toggleClicked();
           setTimeout(() => setPage("commit"), 3000); //5초 딜레이
+          exportSourceEvent();
+          gitAdd();
         }}
       >
         주머니에 내가 만든 도토리 넣기

@@ -1,4 +1,4 @@
-import db from "../config/firebase.js";
+import db from "../config/firebase";
 import firebase from "firebase";
 
 const StatusEnum = {
@@ -217,6 +217,23 @@ export const gitLog = async () => {
     .collection("Commit")
     .where("creator", "==", userId)
     .orderBy("created_at", "desc")
+    .get();
+
+  let commits = [];
+
+  querySnapshot.forEach((doc) => {
+    const commit = doc.data();
+    commits.push(commit);
+  });
+
+  return commits;
+};
+
+export const gitLogNotPushed = async () => {
+  const querySnapshot = await db
+    .collection("Commit")
+    .where("creator", "==", userId)
+    .where("is_pushed", "==", false)
     .get();
 
   let commits = [];

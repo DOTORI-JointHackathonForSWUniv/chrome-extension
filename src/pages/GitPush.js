@@ -4,8 +4,38 @@ import commit from "../assets/commit.png";
 import styled, { keyframes, css } from "styled-components";
 import * as db from "../apis/firebase";
 
+// const Wrapper = styled.div`
+//   background-color: #ffffff;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   height: 600px;
+//   border: 1px solid black;
+// `;
+// const StepBox = styled.span`
+//   display: flex;
+//   flex-direction: row;
+//   padding-top: 22px;
+// `;
+// const Step = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   margin: 0 30px;
+//   align-items: center;
+// `;
+// const StepButton = styled.img`
+//   width: 10px;
+//   height: 9px;
+// `;
+
+// const StepText = styled.div`
+//   padding-top: 11px;
+//   font-size: 15px;
+//   color: #d2d2d2;
+// `;
+
 const PushBox = styled.div`
-  padding: 4rem 0;
+  padding: 5rem 0;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -15,7 +45,7 @@ const moveAnimation = keyframes`
     transform: scale(1)
  }
  30%{
-    transform: scale(2)
+    transform: scale(1.7)
  }
  50% { 
      transform: translateX(125%)
