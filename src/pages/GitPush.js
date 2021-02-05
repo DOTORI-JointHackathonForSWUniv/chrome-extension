@@ -144,6 +144,13 @@ const GitPush = ({ name }) => {
     await db.gitPush();
   };
 
+  const [curLog, setCurLog] = useState([]);
+  const gitLogNotPushed = async () => {
+    const newLog = await db.gitLog();
+    setCurLog(newLog.slice(0, 2));
+    console.log(newLog);
+  };
+
   const [clicked, setClicked] = useState(false);
   const toggleClicked = () => setClicked((value) => !value);
 
