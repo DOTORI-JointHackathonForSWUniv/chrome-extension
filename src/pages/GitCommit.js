@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import step from "../assets/step.png";
 import commit from "../assets/commit.png";
+import reset from "../assets/reset.png";
 import styled from "styled-components";
 import Header from "./Header";
 
@@ -48,6 +49,7 @@ const CommitText = styled.div`
 const CommitImg = styled.img`
     width: 215px;
     height: 215px;
+    position: relative;
 `;
 const CommitInput = styled.input`
     width: 255px;
@@ -57,7 +59,17 @@ const CommitInput = styled.input`
     margin-top: 200px;
     /* padding-top: -1rem; */
 `;
-
+const CommitName = styled.div`
+    font-size: 16px;
+    font-weight: 800;
+    color: #332820;
+`;
+const ResetImg = styled.img`
+    width: 43px;
+    height: 41px;
+    position: absolute;
+    margin-left: 110px;
+`;
 const AddButton = styled.button`
     border: none;
     width: 460px;
@@ -72,6 +84,7 @@ const AddButton = styled.button`
 const GitCommit = ({ history }) => {
     const [inputName, setInputName] = useState("");
     const [isTyping, setTyping] = useState(false);
+    const [complete, setComplete] = useState(false);
 
     const movePage = (page) => {
         history.push(`/${page}`);
@@ -93,19 +106,26 @@ const GitCommit = ({ history }) => {
                 </Step>
             </StepBox>
             <CommitBox>
-                <CommitText>주머니 이름 정해줘~ 먹을 때 찾기 편하게 :)</CommitText>
+                {complete ? null : <CommitText>주머니 이름 정해줘~ 먹을 때 찾기 편하게 :)</CommitText>}
                 <CommitImg src={commit}></CommitImg>
-                <CommitInput
-                    value={inputName}
-                    onChange={(e) => {
-                        setInputName(e.target.value);
-                        setTyping(true);
-                    }}
-                ></CommitInput>
+                {complete ? <ResetImg src={reset}></ResetImg> : null}
+                {complete ? (
+                    <CommitName>{inputName}</CommitName>
+                ) : (
+                    <CommitInput
+                        value={inputName}
+                        onChange={(e) => {
+                            setInputName(e.target.value);
+                            setTyping(true);
+                        }}
+                    ></CommitInput>
+                )}
             </CommitBox>
             <AddButton
                 onClick={() => {
-                    movePage("GitPush");
+                    // movePage("GitPush");
+                    setTyping(false);
+                    setComplete(true);
                 }}
                 style={{ backgroundColor: `${isTyping ? " #2ed37e" : "#e5e5e5"}` }}
             >
