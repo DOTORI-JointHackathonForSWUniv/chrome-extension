@@ -1,5 +1,4 @@
 {
-    
     "globals": {
       "process": false,
       "__dirname": false,

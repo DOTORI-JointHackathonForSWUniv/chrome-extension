@@ -1,4 +1,4 @@
-import db from "../config/firebase.js";
+import db from "../config/firebase";
 import firebase from "firebase";
 
 const StatusEnum = {
@@ -8,8 +8,8 @@ const StatusEnum = {
 };
 Object.freeze(StatusEnum);
 
-// const userId = "jSUP3XUfwgLHv6DmOeiP";
-const userId = "MkiBUPyIhdgOefgKg82a";
+const userId = "jSUP3XUfwgLHv6DmOeiP";
+
 export const getTestData = async () => {
   let newData = [];
   const querySnapshot = await db.collection("test-collection").get();
