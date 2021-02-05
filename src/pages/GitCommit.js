@@ -5,36 +5,6 @@ import styled, { keyframes, css } from "styled-components";
 import Header from "../components/Header";
 import * as db from "../apis/firebase";
 
-// const Wrapper = styled.div`
-//     background-color: #ffffff;
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     height: 600px;
-//     border: 1px solid black;
-// `;
-// const StepBox = styled.span`
-//     display: flex;
-//     flex-direction: row;
-//     padding-top: 22px;
-// `;
-// const Step = styled.div`
-//     display: flex;
-//     flex-direction: column;
-//     margin: 0 30px;
-//     align-items: center;
-// `;
-// const StepButton = styled.img`
-//     width: 10px;
-//     height: 9px;
-// `;
-
-// const StepText = styled.div`
-//     padding-top: 11px;
-//     font-size: 15px;
-//     color: #d2d2d2;
-// `;
-
 const CommitBox = styled.div`
   padding: ${(props) => {
     if (props.complete === "doing") {
@@ -83,6 +53,7 @@ const CommitImg = styled.img`
 const CommitText = styled.div`
   font-size: 14px;
   color: #332820;
+  margin-top: -20px;
 `;
 const CommitInput = styled.input`
   width: 255px;
@@ -90,11 +61,14 @@ const CommitInput = styled.input`
   font-weight: bold;
   border: solid 1px #707070;
   margin-top: 16px;
+  text-align: center;
 `;
 const CommitName = styled.div`
   font-size: 16px;
   font-weight: 800;
   color: #332820;
+  height: 19px;
+  margin-bottom: -20px;
 `;
 const AddButton = styled.button`
   border: none;
@@ -157,7 +131,7 @@ const GitCommit = ({ setPage, setName }) => {
             setTyping(false);
             gitCommit();
             toggleCompleted("done");
-            setTimeout(() => setPage("push"), 2000); //5초 딜레이
+            setTimeout(() => setPage("push"), 3000); //5초 딜레이
           }}
           style={{
             backgroundColor: `${isTyping ? " #2ed37e" : "#e5e5e5"}`,
