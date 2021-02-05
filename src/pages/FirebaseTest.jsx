@@ -1,20 +1,13 @@
 import React from "react";
-import db from "../config/firebase.js";
+
+import * as db from "../apis/firebase";
 import { useState, useCallback, useEffect } from "react";
 
 function FirebaseTest() {
   const [curData, setData] = useState([]);
 
   const getData = async () => {
-    let newData = [];
-    const querySnapshot = await db.collection("test-collection").get();
-
-    querySnapshot.forEach((doc) => {
-      const value = doc.data().value ?? doc.data().dotori;
-      const id = doc.id;
-      newData.push({ value: value, id: id });
-    });
-
+    const newData = await db.getTestData();
     setData(curData.concat(newData));
   };
 
