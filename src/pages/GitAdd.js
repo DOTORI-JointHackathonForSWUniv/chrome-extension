@@ -13,32 +13,32 @@ const Wrapper = styled.div`
     height: 99%;
 `;
 const StepBox = styled.span`
-    display: flex;
-    flex-direction: row;
-    padding-top: 22px;
+  display: flex;
+  flex-direction: row;
+  padding-top: 22px;
 `;
 const Step = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin: 0 30px;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0 30px;
+  align-items: center;
 `;
 const StepButton = styled.img`
-    width: 10px;
-    height: 9px;
+  width: 10px;
+  height: 9px;
 `;
 
 const StepText = styled.div`
-    padding-top: 11px;
-    font-size: 15px;
-    color: #d2d2d2;
+  padding-top: 11px;
+  font-size: 15px;
+  color: #d2d2d2;
 `;
 
 const ImgBox = styled.div`
-    padding: 5rem 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  padding: 5rem 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 const moveAnimation = keyframes`
  0% {
