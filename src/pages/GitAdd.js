@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import dotori from "../assets/dotori.png";
 import basket from "../assets/basket.png";
-import logo from "../assets/logo.png";
-import log from "../assets/log.png";
 import step from "../assets/step.png";
 import styled from "styled-components";
+import Header from "./Header";
 
 const Wrapper = styled.div`
     background-color: #ffffff;
@@ -13,22 +12,6 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     height: 99%;
-`;
-const Header = styled.div`
-    width: 100%;
-    padding-top: 19px;
-`;
-const DotoriLogoImg = styled.img`
-    width: 102px;
-    height: 37px;
-    padding-left: 22px;
-    float: left;
-`;
-const LogImg = styled.img`
-    padding-right: 22px;
-    width: 28px;
-    height: 27px;
-    float: right;
 `;
 const StepBox = styled.span`
     display: flex;
@@ -86,10 +69,7 @@ const GitAdd = ({ history }) => {
 
     return (
         <Wrapper>
-            <Header>
-                <DotoriLogoImg src={logo}></DotoriLogoImg>
-                <LogImg src={log}></LogImg>
-            </Header>
+            <Header></Header>
             <StepBox>
                 <Step>
                     <StepButton src={step}></StepButton>
