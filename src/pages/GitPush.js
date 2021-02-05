@@ -3,13 +3,12 @@ import step from "../assets/step.png";
 import home from "../assets/home.png";
 import commit from "../assets/commit.png";
 import reset from "../assets/reset.png";
-import styled from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import Header from "./Header";
 import * as db from "../apis/firebase";
 
 const Wrapper = styled.div`
     background-color: #ffffff;
-    border-style: solid;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,11 +42,34 @@ const PushBox = styled.div`
     flex-direction: row;
     align-items: center;
 `;
+const moveAnimation = keyframes`
+ 0% {
+    transform: scale(1)
+ }
+ 30%{
+    transform: scale(2)
+ }
+ 50% { 
+     transform: translateX(125%)
+     animation-timing-function: cubic-bezier(0.33333, 0, 0.66667, 0.33333) }
+ 100% {
+   transform: scale(1) translateX(233%) translateY(50%);
+ } 
+`;
 const CommitBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
+    animation-name: ${({ clicked }) =>
+        clicked
+            ? css`
+                  ${moveAnimation};
+              `
+            : null};
+    animation-duration: 2s;
+    animation-iteraion-count: infinite;
+    animation-fill-mode: forwards;
 `;
 const CommitName = styled.div`
     font-size: 16px;
@@ -58,12 +80,6 @@ const CommitName = styled.div`
 const CommitImg = styled.img`
     width: 113px;
     height: 113px;
-`;
-const ResetImg = styled.img`
-    width: 43px;
-    height: 41px;
-    position: absolute;
-    margin-left: 140px;
 `;
 const HomeImg = styled.img`
     width: 225px;
@@ -81,12 +97,9 @@ const AddButton = styled.button`
     font-weight: bold;
 `;
 
-const GitPush = ({ history }) => {
+const GitPush = ({ setPage }) => {
     const [complete, setComplete] = useState(false);
 
-    const movePage = (page) => {
-        history.push(`/${page}`);
-    };
     const [curData, setData] = useState([]);
 
     const getData = async () => {
@@ -104,6 +117,9 @@ const GitPush = ({ history }) => {
         await db.gitPush();
     };
 
+    const [clicked, setClicked] = useState(false);
+    const toggleClicked = () => setClicked((value) => !value);
+
     return (
         <Wrapper>
             <Header></Header>
@@ -120,8 +136,7 @@ const GitPush = ({ history }) => {
                 </Step>
             </StepBox>
             <PushBox>
-                <CommitBox>
-                    <ResetImg src={reset}></ResetImg>
+                <CommitBox clicked={clicked} onClick={toggleClicked}>
                     <CommitImg src={commit}></CommitImg>
                     <CommitName>겨울에 먹을 비상 도토리</CommitName>
                 </CommitBox>
@@ -129,6 +144,7 @@ const GitPush = ({ history }) => {
             </PushBox>
             <AddButton
                 onClick={() => {
+                    toggleClicked();
                     setComplete(true);
                     gitPush();
                 }}
