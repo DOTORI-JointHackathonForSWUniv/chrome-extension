@@ -1,20 +1,13 @@
 import React from "react";
-import db from "../config/firebase.js";
-import { useState, useCallback, useEffect } from "react";
+
+import * as db from "../apis/firebase";
+import { useState, useEffect } from "react";
 
 function FirebaseTest() {
   const [curData, setData] = useState([]);
 
   const getData = async () => {
-    let newData = [];
-    const querySnapshot = await db.collection("test-collection").get();
-
-    querySnapshot.forEach((doc) => {
-      const value = doc.data().value ?? doc.data().dotori;
-      const id = doc.id;
-      newData.push({ value: value, id: id });
-    });
-
+    const newData = await db.getTestData();
     setData(curData.concat(newData));
   };
 
@@ -23,12 +16,27 @@ function FirebaseTest() {
     getData();
   }, []);
 
+  const gitAdd = async () => {
+    await db.gitAdd({ code1: "temp code!", code2: "testing!" });
+  };
+
+  const gitCommit = async () => {
+    await db.gitCommit("이름 없는 커밋");
+  };
+
+  const gitPush = async () => {
+    await db.gitPush();
+  };
+
   return curData.length > 0 ? (
     <div>
+      <button onClick={gitAdd}>Git Add Test</button>
+      <button onClick={gitCommit}>Git Commit Test</button>
+      <button onClick={gitPush}>Git Push Test</button>
       {curData.map((data, index) => {
         return (
           <div key={index}>
-            id: {data.id}, value: {data.value}{" "}
+            id: {data.id}, value: {data.value}
           </div>
         );
       })}
