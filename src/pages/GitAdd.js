@@ -4,6 +4,9 @@ import basket from "../assets/basket.png";
 import step from "../assets/step.png";
 import styled, { keyframes, css } from "styled-components";
 import Header from "./Header";
+import * as db from "../apis/firebase";
+
+
 const Wrapper = styled.div`
     background-color: #ffffff;
     display: flex;
@@ -124,6 +127,11 @@ const GitAdd = ({ setPage }) => {
         // });
     }, []);
 
+
+    const gitAdd = async () => {
+        await db.gitAdd(entryCode);
+    };
+
     return (
         <Wrapper>
             <Header></Header>
@@ -148,11 +156,17 @@ const GitAdd = ({ setPage }) => {
                     toggleClicked();
                     setTimeout(() => setPage("commit"), 3000); //5초 딜레이
                     exportSourceEvent();
+                    gitAdd();
+                    
+
                 }}
-                // onClick={toggleClicked}
+
             >
                 주머니에 내가 만든 도토리 넣기
             </AddButton>
+            <p>
+            {JSON.stringify(entryCode)}
+            </p>
         </Wrapper>
     );
 };
