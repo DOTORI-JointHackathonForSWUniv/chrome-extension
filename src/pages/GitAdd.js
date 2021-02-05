@@ -167,13 +167,16 @@ const GitAdd = ({ setPage }) => {
                     setTimeout(() => setPage("commit"), 3000); //5초 딜레이
                     exportSourceEvent();
                     gitAdd();
-
+                    
 
                 }}
 
             >
                 주머니에 내가 만든 도토리 넣기
             </AddButton>
+            <p>
+            {JSON.stringify(entryCode)}
+            </p>
         </Wrapper>
     );
 };
