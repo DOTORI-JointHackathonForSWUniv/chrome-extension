@@ -85,7 +85,6 @@ const AddButton = styled.button`
 `;
 
 const GitAdd = ({ setPage }) => {
-    const [entryCode, setEntryCode] = useState({});
     const [clicked, setClicked] = useState(false);
     const toggleClicked = () => setClicked((value) => !value);
     // const [clicked2, setClicked2] = useState(false);
@@ -106,7 +105,7 @@ const GitAdd = ({ setPage }) => {
     };
 
     useEffect(() => {
-        chrome.storage.onChanged.addListener((changes, namespace) => {
+        chrome.storage.onChanged.addListener( async (changes, namespace) => {
             for (var key in changes) {
                 var storageChange = changes[key];
                 // console.log(
@@ -121,16 +120,13 @@ const GitAdd = ({ setPage }) => {
                 if (key === "export_response_display") {
                     // console.log("Success");
                     // console.log(JSON.stringify(storageChange.newValue));
-                    setEntryCode(storageChange.newValue);
+                    await db.gitAdd(storageChange.newValue())
                 }
             }
         });
     }, []);
 
 
-    const gitAdd = async () => {
-        await db.gitAdd(entryCode);
-    };
 
     return (
         <Wrapper>
@@ -166,17 +162,13 @@ const GitAdd = ({ setPage }) => {
                     toggleClicked();
                     setTimeout(() => setPage("commit"), 3000); //5초 딜레이
                     exportSourceEvent();
-                    gitAdd();
-                    
 
                 }}
 
             >
                 주머니에 내가 만든 도토리 넣기
             </AddButton>
-            <p>
-            {JSON.stringify(entryCode)}
-            </p>
+
         </Wrapper>
     );
 };
