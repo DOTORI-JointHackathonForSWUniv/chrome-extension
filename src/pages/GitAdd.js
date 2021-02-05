@@ -3,36 +3,7 @@ import dotori from "../assets/dotori.png";
 import basket from "../assets/basket.png";
 import step from "../assets/step.png";
 import styled, { keyframes, css } from "styled-components";
-import Header from "./Header";
-
-const Wrapper = styled.div`
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 99%;
-`;
-const StepBox = styled.span`
-  display: flex;
-  flex-direction: row;
-  padding-top: 22px;
-`;
-const Step = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 0 30px;
-  align-items: center;
-`;
-const StepButton = styled.img`
-  width: 10px;
-  height: 9px;
-`;
-
-const StepText = styled.div`
-  padding-top: 11px;
-  font-size: 15px;
-  color: #d2d2d2;
-`;
+import Header from "../components/Header";
 
 const ImgBox = styled.div`
   padding: 5rem 0;
@@ -89,20 +60,7 @@ const GitAdd = ({ setPage }) => {
   // const toggleClicked2 = () => setClicked2(value => !value);
 
   return (
-    <Wrapper>
-      <Header></Header>
-      <StepBox>
-        <Step>
-          <StepButton src={step}></StepButton>
-          <StepText style={{ color: "#2ed37e" }}>도토리 넣기</StepText>
-        </Step>
-        <Step>
-          <StepText style={{ paddingTop: "20px" }}>주머니 이름 정하기</StepText>
-        </Step>
-        <Step>
-          <StepText style={{ paddingTop: "20px" }}>도토리 보관하기</StepText>
-        </Step>
-      </StepBox>
+    <div>
       <ImgBox>
         <DotoriImg
           src={dotori}
@@ -111,17 +69,15 @@ const GitAdd = ({ setPage }) => {
         ></DotoriImg>
         <BasketImg src={basket}></BasketImg>
       </ImgBox>
-
       <AddButton
         onClick={() => {
           toggleClicked();
           setTimeout(() => setPage("commit"), 3000); //5초 딜레이
         }}
-        // onClick={toggleClicked}
       >
         주머니에 내가 만든 도토리 넣기
       </AddButton>
-    </Wrapper>
+    </div>
   );
 };
 

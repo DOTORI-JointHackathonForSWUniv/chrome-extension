@@ -1,39 +1,7 @@
 import React, { useEffect, useState } from "react";
-import step from "../assets/step.png";
 import commit from "../assets/commit.png";
-import reset from "../assets/reset.png";
 import styled from "styled-components";
-import Header from "./Header";
 import * as db from "../apis/firebase";
-
-const Wrapper = styled.div`
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 99%;
-`;
-const StepBox = styled.span`
-  display: flex;
-  flex-direction: row;
-  padding-top: 22px;
-`;
-const Step = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 0 30px;
-  align-items: center;
-`;
-const StepButton = styled.img`
-  width: 10px;
-  height: 9px;
-`;
-
-const StepText = styled.div`
-  padding-top: 11px;
-  font-size: 15px;
-  color: #d2d2d2;
-`;
 
 const CommitBox = styled.div`
   padding: 4rem 0;
@@ -96,20 +64,7 @@ const GitCommit = ({ setPage }) => {
   };
 
   return (
-    <Wrapper>
-      <Header></Header>
-      <StepBox>
-        <Step>
-          <StepText style={{ paddingTop: "20px" }}>도토리 넣기</StepText>
-        </Step>
-        <Step>
-          <StepButton src={step}></StepButton>
-          <StepText style={{ color: "#2ed37e" }}>주머니 이름 정하기</StepText>
-        </Step>
-        <Step>
-          <StepText style={{ paddingTop: "20px" }}>도토리 보관하기</StepText>
-        </Step>
-      </StepBox>
+    <div>
       <CommitBox>
         {complete ? null : (
           <CommitText>주머니 이름 정해줘~ 먹을 때 찾기 편하게 :)</CommitText>
@@ -139,7 +94,7 @@ const GitCommit = ({ setPage }) => {
       >
         주머니 이름 정하기
       </AddButton>
-    </Wrapper>
+    </div>
   );
 };
 
