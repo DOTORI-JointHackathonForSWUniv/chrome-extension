@@ -3,7 +3,7 @@ import dotori from "../assets/dotori.png";
 import basket from "../assets/basket.png";
 import logo from "../assets/logo.png";
 import styled from "styled-components";
-
+//test
 const Wrapper = styled.div`
     width: 800px;
     height: 600px;
