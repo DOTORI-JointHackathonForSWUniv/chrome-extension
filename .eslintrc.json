@@ -1,0 +1,8 @@
+{
+    
+    "globals": {
+      "process": false,
+      "__dirname": false,
+      "chrome": false
+    }
+}
