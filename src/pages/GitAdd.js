@@ -96,10 +96,10 @@ const GitAdd = ({ history }) => {
                     <StepText style={{ color: "#2ed37e" }}>도토리 넣기</StepText>
                 </Step>
                 <Step>
-                    <StepText style={{ paddingTop: "22px" }}>주머니 이름 정하기</StepText>
+                    <StepText style={{ paddingTop: "20px" }}>주머니 이름 정하기</StepText>
                 </Step>
                 <Step>
-                    <StepText style={{ paddingTop: "22px" }}>도토리 보관하기</StepText>
+                    <StepText style={{ paddingTop: "20px" }}>도토리 보관하기</StepText>
                 </Step>
             </StepBox>
             <ImgBox>
