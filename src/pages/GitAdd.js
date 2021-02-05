@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import dotori from "../assets/dotori.png";
 import basket from "../assets/basket.png";
 import step from "../assets/step.png";
-import styled from "styled-components";
+import styled, {keyframes, css} from "styled-components";
 import Header from "./Header";
 
 const Wrapper = styled.div`
@@ -41,18 +41,31 @@ const ImgBox = styled.div`
     flex-direction: row;
     align-items: center;
 `;
-
+const moveAnimation = keyframes`
+ from {
+  transform: translationX(0%);
+ }
+ to {
+   transform: translateX(250%);
+ }
+`;
 const DotoriImg = styled.img`
     width: 113px;
     height: 113px;
-    transform: ${({clicked}) => clicked ? 'translateX(295px)': null}
-
+    animation-name: ${({ clicked }) => clicked ? css`${moveAnimation};` : null};
+    animation-duration: 2s;
+    animation-iteraion-count: infinite;
+    animation-fill-mode: forwards;
+    
 `;
 const BasketImg = styled.img`
     width: 215px;
     height: 215px;
     margin-left: 8rem;
+    z-index: 1;
 `;
+
+
 
 const AddButton = styled.button`
     width: 460px;
@@ -71,8 +84,8 @@ const GitAdd = ({ history }) => {
 
     const [clicked, setClicked] = useState(false);
     const toggleClicked = () => setClicked(value => !value);
-    const [clicked2, setClicked2] = useState(false);
-    const toggleClicked2 = () => setClicked2(value => !value);
+    // const [clicked2, setClicked2] = useState(false);
+    // const toggleClicked2 = () => setClicked2(value => !value);
 
     return (
         <Wrapper>
