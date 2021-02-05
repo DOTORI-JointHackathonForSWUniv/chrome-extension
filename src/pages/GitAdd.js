@@ -2,46 +2,54 @@ import React, { useEffect } from "react";
 import dotori from "../assets/dotori.png";
 import basket from "../assets/basket.png";
 import logo from "../assets/logo.png";
+import log from "../assets/log.png";
+import step from "../assets/step.png";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-    width: 100%;
-    height: 100%;
-    padding: 19px 25px 58px 22px;
     background-color: #ffffff;
     border-style: solid;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 99%;
 `;
 const Header = styled.div`
-    display: flex;
-    flex-direction: row;
     width: 100%;
+    padding-top: 19px;
 `;
 const DotoriLogoImg = styled.img`
     width: 102px;
     height: 37px;
+    padding-left: 22px;
+    float: left;
 `;
-const LogImg = styled.img``;
-
-const TextBox = styled.span`
+const LogImg = styled.img`
+    padding-right: 22px;
+    width: 28px;
+    height: 27px;
+    float: right;
+`;
+const StepBox = styled.span`
     display: flex;
     flex-direction: row;
+    padding-top: 22px;
 `;
-
-const AddText = styled.div`
-    font-size: 15px;
-    color: #d2d2d2;
+const Step = styled.div`
+    display: flex;
+    flex-direction: column;
     margin: 0 30px;
+    align-items: center;
 `;
-
-const Triangle = styled.text`
+const StepButton = styled.img`
     width: 10px;
     height: 9px;
-    margin: 0 92px 11px 32px;
-    border: solid 1px #2ed37e;
-    color: #2ed37e;
+`;
+
+const StepText = styled.div`
+    padding-top: 11px;
+    font-size: 15px;
+    color: #d2d2d2;
 `;
 
 const ImgBox = styled.div`
@@ -72,25 +80,39 @@ const AddButton = styled.button`
 `;
 
 const GitAdd = ({ history }) => {
-    const moveMain = () => {
-        history.push("/");
+    const movePage = (page) => {
+        history.push(`/${page}`);
     };
 
     return (
         <Wrapper>
             <Header>
                 <DotoriLogoImg src={logo}></DotoriLogoImg>
+                <LogImg src={log}></LogImg>
             </Header>
-            <TextBox>
-                <AddText>도토리 넣기</AddText>
-                <AddText>주머니 이름 정하기</AddText>
-                <AddText>도토리 보관하기</AddText>
-            </TextBox>
+            <StepBox>
+                <Step>
+                    <StepButton src={step}></StepButton>
+                    <StepText style={{ color: "#2ed37e" }}>도토리 넣기</StepText>
+                </Step>
+                <Step>
+                    <StepText style={{ paddingTop: "22px" }}>주머니 이름 정하기</StepText>
+                </Step>
+                <Step>
+                    <StepText style={{ paddingTop: "22px" }}>도토리 보관하기</StepText>
+                </Step>
+            </StepBox>
             <ImgBox>
                 <DotoriImg src={dotori}></DotoriImg>
                 <BasketImg src={basket}></BasketImg>
             </ImgBox>
-            <AddButton>주머니에 내가 만든 도토리 넣기</AddButton>
+            <AddButton
+                onClick={() => {
+                    movePage("GitCommit");
+                }}
+            >
+                주머니에 내가 만든 도토리 넣기
+            </AddButton>
         </Wrapper>
     );
 };
