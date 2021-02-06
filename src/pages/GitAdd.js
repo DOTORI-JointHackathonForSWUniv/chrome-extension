@@ -92,15 +92,15 @@ const GitAdd = ({ setPage }) => {
 
     const exportSourceEvent = () => {
         console.log("export click");
-        // chrome.tabs.getSelected((current_tab) => {
-        //   const current_tab_id = current_tab.id;
-        //   chrome.storage.local.set({ export_response_display: "" }, () => {});
-        //   chrome.tabs.sendMessage(current_tab_id, {
-        //     type: "export_request",
-        //     source: "popup.js",
-        //     destination: "contentScript.js",
-        //   });
-        // });
+        chrome.tabs.getSelected((current_tab) => {
+            const current_tab_id = current_tab.id;
+            chrome.storage.local.set({ export_response_display: "" }, () => {});
+            chrome.tabs.sendMessage(current_tab_id, {
+                type: "export_request",
+                source: "popup.js",
+                destination: "contentScript.js",
+            });
+        });
     };
 
     const [curLog, setCurLog] = useState([]);
@@ -112,24 +112,24 @@ const GitAdd = ({ setPage }) => {
 
     useEffect(() => {
         gitLogNotPushed();
-        // chrome.storage.onChanged.addListener((changes, namespace) => {
-        //   for (var key in changes) {
-        //     var storageChange = changes[key];
-        //     // console.log(
-        //     //     'Storage key "%s" in namespace "%s" changed. ' +
-        //     //         'Old value was "%s", new value is "%s".',
-        //     //     key,
-        //     //     namespace,
-        //     //     storageChange.oldValue,
-        //     //     storageChange.newValue
-        //     // );
-        //     if (key === "export_response_display") {
-        //       // console.log("Success");
-        //       // console.log(JSON.stringify(storageChange.newValue));
-        //       setEntryCode(storageChange.newValue);
-        //     }
-        //   }
-        // });
+        chrome.storage.onChanged.addListener((changes, namespace) => {
+            for (var key in changes) {
+                var storageChange = changes[key];
+                // console.log(
+                //     'Storage key "%s" in namespace "%s" changed. ' +
+                //         'Old value was "%s", new value is "%s".',
+                //     key,
+                //     namespace,
+                //     storageChange.oldValue,
+                //     storageChange.newValue
+                // );
+                if (key === "export_response_display") {
+                    // console.log("Success");
+                    // console.log(JSON.stringify(storageChange.newValue));
+                    setEntryCode(storageChange.newValue);
+                }
+            }
+        });
     }, []);
 
     const gitAdd = async () => {
