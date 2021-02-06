@@ -1,4 +1,4 @@
-# Dotori Server
+# Dotori Chrome extension
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-blue.svg?style=flat-square)](#contributors-)
@@ -37,13 +37,14 @@ SW가치 확산을 위해 시작한 SW교육 봉사단 활동 경험을 하며 �
 
 1️⃣ Chrome Extension (구글 확장 프로그램)
 
-[엔트리](https://playentry.org/ws#!)_에서 코딩한 화면에서 바로 소스코드 버전관리 가능!
+[엔트리 ](https://playentry.org/ws#!)_에서 코딩한 화면에서 바로 소스코드 버전관리 가능!
 
 
 확장 프로그램에서 Push한 엔트리 파일을 모아보고 관리 및 다운할 수 있어요  
 
 
-## Architecture
+## Sample
+![화면-기록-2021-02-06-오후-12 41 42](https://user-images.githubusercontent.com/22928068/107108124-10602500-6879-11eb-964b-012df9d0a250.gif)
 
 ## 팀별 역할 분담
 - 손영인 : firebase 연동 및 git 명령어 관련 api 개발, 스키마 설계
