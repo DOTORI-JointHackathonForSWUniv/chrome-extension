@@ -7,30 +7,22 @@
     "default_popup": "index.html",
     "default_title": "Open the popup"
   },
-  "permissions": [
-    "*://playentry.org/*",
-    "tabs",
-    "storage"
-  ],
+  "permissions": ["*://playentry.org/*", "tabs", "storage"],
   "background": {
-    "scripts": [
-      "background.js"
-    ]
+    "scripts": ["background.js"]
   },
   "content_scripts": [
     {
-      "matches": [
-        "*://playentry.org/*"
-      ],
+      "matches": ["*://playentry.org/*"],
       "all_frames": true,
-      "js": [
-        "injector.js",
-        "contentScript.js"
-      ]
+      "js": ["injector.js", "contentScript.js"]
     }
   ],
-  "web_accessible_resources": [
-    "real_content_script.js"
-  ],
-  "content_security_policy": "script-src 'self' 'sha256-eGQ/xaBz1+cKc18MM8k1rrbZJeGOxxmWxAr9W1vUMVs='; object-src 'self'"
+  "web_accessible_resources": ["real_content_script.js"],
+  "content_security_policy": "script-src 'self' 'sha256-eGQ/xaBz1+cKc18MM8k1rrbZJeGOxxmWxAr9W1vUMVs='; object-src 'self'",
+  "icons": {
+    "16": "extension.png",
+    "48": "extension.png",
+    "128": "extension.png"
+  }
 }

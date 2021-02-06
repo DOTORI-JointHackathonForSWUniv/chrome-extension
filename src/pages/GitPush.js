@@ -146,7 +146,7 @@ const GitPush = ({ name }) => {
 
   const [curLog, setCurLog] = useState([]);
   const gitLogNotPushed = async () => {
-    const newLog = await db.gitLog();
+    const newLog = await db.gitLogNotPushed();
     setCurLog(newLog.slice(0, 2));
     console.log(newLog);
   };
