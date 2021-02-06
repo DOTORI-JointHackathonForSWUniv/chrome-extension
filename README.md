@@ -50,7 +50,7 @@ SW가치 확산을 위해 시작한 SW교육 봉사단 활동 경험을 하며 �
 - 손영인 : firebase 연동 및 git 명령어 관련 api 개발, 스키마 설계
 - 최선욱 : Entry python 소스코드 export 코드 구현
 - 한지은 : dotori 서비스와 git 명령어 api 연동
-
+- 원다연 : UI/UX 
 
 ## 최종 목표
 
@@ -97,6 +97,7 @@ SW가치 확산을 위해 시작한 SW교육 봉사단 활동 경험을 하며 �
     <td align="center"><a href="https://github.com/broccolism"><img src="https://avatars.githubusercontent.com/u/45515332?s=400&u=ab09afbfdc29ef24164be9b6974d137cdba12e30&v=4" width="100px;" alt=""/><br /><sub><b>broccolism</b></sub></a><br /><a href="https://github.com/orgs/DOTORI-JointHackathonForSWUniv/people/broccolism" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/seonuk"><img src="https://avatars3.githubusercontent.com/u/22928068?v=4?s=100" width="100px;" alt=""/><br /><sub><b>seonuk</b></sub></a><br /><a href="https://github.com/orgs/DOTORI-JointHackathonForSWUniv/people/seonuk" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Daily-Jin"><img src="https://avatars.githubusercontent.com/u/61936465?s=400&v=4" width="100px;" alt=""/><br /><sub><b>Daily-Jin</b></sub></a><br /><a href="https://github.com/orgs/DOTORI-JointHackathonForSWUniv/people/Daily-Jin" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/dazzel3"><img src="https://avatars.githubusercontent.com/u/50357236?s=400&v=4" width="100px;" alt=""/><br /><sub><b>Daily-Jin</b></sub></a><br /><a href="https://github.com/orgs/DOTORI-JointHackathonForSWUniv/people/dazzel3" title="Code">💻</a></td>
   </tr>
 </table>
 
