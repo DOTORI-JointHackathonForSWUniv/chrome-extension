@@ -154,6 +154,10 @@ const GitPush = ({ name }) => {
   const [clicked, setClicked] = useState(false);
   const toggleClicked = () => setClicked((value) => !value);
 
+  useEffect(() => {
+    gitLogNotPushed();
+  }, []);
+
   return (
     <Wrapper>
       <ContentBox>
