@@ -174,7 +174,8 @@ const GitPush = ({ name }) => {
             setComplete(true);
             gitPush();
             setTimeout(
-              () => window.open("https://dotori-2021.web.app/", "_blank"),
+              () =>
+                window.open("https://dotori-sw-hackerton.web.app/", "_blank"),
               3000
             ); //5초 딜레이
           }}
