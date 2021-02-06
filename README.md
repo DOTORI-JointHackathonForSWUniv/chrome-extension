@@ -32,12 +32,34 @@ SW가치 확산을 위해 시작한 SW교육 봉사단 활동 경험을 하며 �
 
 ➡️  **엔트리(블록코딩) 사용자를 위한 소스코드 버전관리 서비스 개발**  
   
-  
-### dependencies module (package.json)
+
+## [ 핵심 기능 설명 ]
+
+1️⃣ Chrome Extension (구글 확장 프로그램)
+
+[엔트리](https://playentry.org/ws#!)_에서 코딩한 화면에서 바로 소스코드 버전관리 가능!
+
+
+확장 프로그램에서 Push한 엔트리 파일을 모아보고 관리 및 다운할 수 있어요  
+
+
+## [ Architecture ]  
+
+## [ 팀별 역할 분담 ]
+- 손영인 : firebase 연동 및 git 명령어 관련 api 개발, 스키마 설계
+- 최선욱 : Entry python 소스코드 export 코드 구현
+- 한지은 : dotori 서비스와 git 명령어 api 연동
+
+
+## [ 최종 목표 ]
+
+➡️➡️ 저희 서비스의 최종 목표는 도토리(DOTORI)를 통해 소스코드 버전 관리 시스템을 익힌 사용자가 미래에 **git을 활용한 서비스를 큰 어려움 없이 사용**할 수 있도록 하는 것입니다.
+
+## [ module ] (package.json)
 #### Dev module: 
 ```json
   "devDependencies": {
-    "cross-env": "5.2.1"
+    "cross-env": "5.2.1",
     "eslint": "^7.16.0",
     "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-prettier": "^3.3.0",
@@ -62,27 +84,7 @@ SW가치 확산을 위해 시작한 SW교육 봉사단 활동 경험을 하며 �
     "styled-components": "5.2.1",
     "web-vitals": "^1.0.1"
   }
-```
-
-### Architecture
-
-### 핵심 기능 설명
-
-1️⃣ Chrome Extension (구글 확장 프로그램)
-
-[엔트리](https://playentry.org/ws#!)_에서 코딩한 화면에서 바로 소스코드 버전관리 가능!
-
-
-확장 프로그램에서 Push한 엔트리 파일을 모아보고 관리 및 다운할 수 있어요
-### 팀별 역할 분담
-- 손영인 : firebase 연동 및 git 명령어 관련 api 개발, 스키마 설계
-- 최선욱 : Entry python 소스코드 export 코드 구현
-- 한지은 : dotori 서비스와 git 명령어 api 연동
-
-
-### [ 최종 목표 ]
-
-➡️➡️ 저희 서비스의 최종 목표는 도토리(DOTORI)를 통해 소스코드 버전 관리 시스템을 익힌 사용자가 미래에 **git을 활용한 서비스를 큰 어려움 없이 사용**할 수 있도록 하는 것입니다.
+```  
 
 ## Contributors ✨
 
