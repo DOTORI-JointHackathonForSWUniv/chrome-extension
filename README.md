@@ -99,7 +99,7 @@ SW가치 확산을 위해 시작한 SW교육 봉사단 활동 경험을 하며 �
     <td align="center"><a href="https://github.com/seonuk"><img src="https://avatars3.githubusercontent.com/u/22928068?v=4?s=100" width="100px;" alt=""/><br /><sub><b>seonuk</b></sub></a><br /><a href="https://github.com/orgs/DOTORI-JointHackathonForSWUniv/people/seonuk" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Daily-Jin"><img src="https://avatars.githubusercontent.com/u/61936465?s=400&v=4" width="100px;" alt=""/><br /><sub><b>Daily-Jin</b></sub></a><br /><a href="https://github.com/orgs/DOTORI-JointHackathonForSWUniv/people/Daily-Jin" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/minjyo"><img src="https://avatars.githubusercontent.com/u/24283401?s=400&u=13047edba3e2346a2196c813459ca68e61f5f20a&v=4" width="100px;" alt=""/><br /><sub><b>minjyo</b></sub></a><br /><a href="https://github.com/orgs/DOTORI-JointHackathonForSWUniv/people/minjyo" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/dazzel3"><img src="https://avatars.githubusercontent.com/u/50357236?s=400&v=4" width="100px;" alt=""/><br /><sub><b>minjyo</b></sub></a><br /><a href="https://github.com/orgs/DOTORI-JointHackathonForSWUniv/people/dazzel3" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/dazzel3"><img src="https://avatars.githubusercontent.com/u/50357236?s=400&v=4" width="100px;" alt=""/><br /><sub><b>dazzel3</b></sub></a><br /><a href="https://github.com/orgs/DOTORI-JointHackathonForSWUniv/people/dazzel3" title="Code">💻</a></td>
   </tr>
 </table>
 
